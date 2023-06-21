@@ -10,6 +10,10 @@ dependencies:
   flutter_svg: ^1.1.6
   flutter_switch: ^0.3.2
   intl: ^0.17.0
+  dio: ^5.1.1
+  shared_preferences:
+  table_calendar:
+  flutter_bloc: ^8.1.2
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

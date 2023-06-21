@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:groumally/feature/login/model/seller_login_res_model.dart';
 import 'package:groumally/theme/app_decoration.dart';
 import 'package:groumally/theme/app_style.dart';
 import 'package:groumally/utils/image_constant.dart';
 import 'package:groumally/utils/size_utils.dart';
-import 'package:groumally/widgets/app_bar/custom_app_bar.dart';
 import 'package:groumally/widgets/custom_image_view.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({Key? key}) : super(key: key);
-
+   UserProfileScreen({Key? key}) : super(key: key);
+  SellerLoginModel sellerLoginModel = SellerLoginModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        height: 40,
-        title: Text("Profile"),
-      ),
+      appBar:AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text("My Profile",style: TextStyle(fontSize:20,color: Colors.black)),
+          actions: [
+            IconButton(onPressed: (){}, icon:Icon(Icons.notifications,color: Colors.black,))
+          ],
+        ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -24,9 +29,9 @@ class UserProfileScreen extends StatelessWidget {
             child: Container(
               padding: getPadding(
                 left: 121,
-                top: 23,
+                top: 30,
                 right: 121,
-                bottom: 23,
+                bottom: 30,
               ),
               decoration: AppDecoration.fillGray900,
               child: Column(
@@ -51,7 +56,7 @@ class UserProfileScreen extends StatelessWidget {
                       top: 12,
                     ),
                     child: Text(
-                      "ABCD Barber Shop".toUpperCase(),
+                      "${sellerLoginModel.data?.user?.shopName}".toUpperCase(),
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: AppStyle.txtInterBold16,
@@ -87,17 +92,6 @@ class UserProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: getPadding(
-                      top: 5,
-                    ),
-                    child: Text(
-                      "Loup City, Nebraska 68853, USA",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyle.txtInterRegular11,
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -105,17 +99,11 @@ class UserProfileScreen extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          Padding(
-              padding: getPadding(top: 14),
-              child: Text("Service Details".toUpperCase(),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: AppStyle.txtInterBold16Black900)),
           Container(
               width: double.maxFinite,
               child: Container(
                   width: getHorizontalSize(384),
-                  margin: getMargin(top: 13),
+                  margin: EdgeInsets.all(14),
                   padding: getPadding(left: 26, top: 24, right: 26, bottom: 24),
                   decoration: AppDecoration.fillGray200
                       .copyWith(borderRadius: BorderRadiusStyle.roundedBorder6),
@@ -124,69 +112,38 @@ class UserProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                            padding: getPadding(top: 5),
-                            child: Text("Service Name".toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterBold12Black900)),
-                        Padding(
-                            padding: getPadding(top: 2),
-                            child: Text("Crew Cut",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterLight16)),
-                        Padding(
-                            padding: getPadding(top: 11),
-                            child: Text("Service Category".toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterBold12Black900)),
-                        Padding(
-                            padding: getPadding(top: 2),
-                            child: Text("Children",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterLight16)),
-                        Padding(
-                            padding: getPadding(top: 11),
-                            child: Text("Duration".toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterBold12)),
-                        Padding(
-                            padding: getPadding(top: 2),
-                            child: Text("02 hr 00 min",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterLight16)),
-                        Padding(
-                            padding: getPadding(top: 11),
-                            child: Text("rate".toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterBold12)),
-                        Padding(
-                            padding: getPadding(top: 9),
-                            child: Text("390",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterLight16)),
-                        Padding(
-                            padding: getPadding(top: 11),
-                            child: Text("offer".toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterBold12)),
-                        Padding(
-                            padding: getPadding(top: 9),
-                            child: Text("50%",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterLight16))
+                        contentField(
+                            title: "shop owner name", subTitle: "${sellerLoginModel.data?.user?.name}"),
+                        contentField(title: "shop name", subTitle: "Crew Cut"),
+                        contentField(
+                            title: "shop address", subTitle: "Crew Cut"),
+                        contentField(title: "Email", subTitle: "Crew Cut"),
+                        contentField(
+                            title: "Phone number", subTitle: "Crew Cut"),
+                        contentField(title: "password", subTitle: "Crew Cut"),
                       ]))),
         ],
       ),
+    );
+  }
+
+  Widget contentField({required String title, required String subTitle}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+            padding: getPadding(top: 11),
+            child: Text(title.toUpperCase(),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                style: AppStyle.txtInterBold12)),
+        Padding(
+            padding: getPadding(top: 2),
+            child: Text(subTitle,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                style: AppStyle.txtInterLight16)),
+      ],
     );
   }
 }

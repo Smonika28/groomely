@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
+import 'package:groumally/feature/booking/model/booking_history.dart';
 
 // ignore: must_be_immutable
 class BookingHistoryItemWidget extends StatelessWidget {
-  BookingHistoryItemWidget();
+  Data bookingHistoryData;
+  BookingHistoryItemWidget({required this.bookingHistoryData});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                   borderRadius: BorderRadiusStyle.txtCustomBorderTL28,
                 ),
                 child: Text(
-                  "",
+                  "${bookingHistoryData.status}",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterRegular14WhiteA700,
@@ -83,7 +85,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                   top: 26,
                 ),
                 child: Text(
-                  "Adam Smith",
+                  "${bookingHistoryData.name}",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterLight16,
@@ -127,7 +129,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                         top: 3,
                       ),
                       child: Text(
-                        "testuser@yopmail.com",
+                        "${bookingHistoryData.email}",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterLight16,
@@ -146,7 +148,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "9089097898",
+                                "${bookingHistoryData.phone}",
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
                                 style: AppStyle.txtInterLight16,
@@ -167,7 +169,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                                   top: 4,
                                 ),
                                 child: Text(
-                                  "15 May, 2023",
+                                  "${bookingHistoryData.bookingDate}",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtInterLight16,
@@ -195,7 +197,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                                     top: 4,
                                   ),
                                   child: Text(
-                                    "3:00 pm - 4:00 pm",
+                                    "${bookingHistoryData.bookingTimeId}",
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.txtInterLight16,
@@ -225,7 +227,7 @@ class BookingHistoryItemWidget extends StatelessWidget {
                                     top: 3,
                                   ),
                                   child: Text(
-                                    "500",
+                                    "${bookingHistoryData.amount}",
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.txtInterLight16,

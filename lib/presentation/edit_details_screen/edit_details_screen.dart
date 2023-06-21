@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/app_bar/appbar_image.dart';
-import 'package:groumally/widgets/app_bar/appbar_subtitle.dart';
-import 'package:groumally/widgets/app_bar/appbar_title.dart';
-import 'package:groumally/widgets/app_bar/custom_app_bar.dart';
 import 'package:groumally/widgets/custom_button.dart';
 
 class EditDetailsScreen extends StatelessWidget {
@@ -11,36 +7,19 @@ class EditDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+          elevation: 2,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text("Edit Details",style: TextStyle(fontSize:20,color: Colors.black)),
+          actions: [
+            IconButton(onPressed: (){}, icon:Icon(Icons.notifications,color: Colors.black,))
+          ],
+        ),
             backgroundColor: ColorConstant.whiteA700,
-            appBar: CustomAppBar(
-                height: getVerticalSize(82),
-                title: Padding(
-                    padding: getPadding(left: 12),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AppbarSubtitle(
-                              text: "9:30",
-                              margin: getMargin(left: 3, right: 219)),
-                          Padding(
-                              padding: getPadding(top: 8),
-                              child: Row(children: [
-                                AppbarImage(
-                                    height: getSize(36),
-                                    width: getSize(36),
-                                    svgPath: ImageConstant.imgArrowleft,
-                                    margin: getMargin(top: 1),
-                                    onTap: () {
-                                      onTapArrowleft1(context);
-                                    }),
-                                AppbarTitle(
-                                    text: "Edit Details",
-                                    margin: getMargin(left: 104, bottom: 12))
-                              ]))
-                        ])),
-                styleType: Style.bgShadowBlack90014),
             body: SingleChildScrollView(
-                padding: getPadding(top: 7),
+                padding: getPadding(top:10),
                 child: Container(
                     decoration: AppDecoration.fillGray200,
                     child: Column(

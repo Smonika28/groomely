@@ -1,8 +1,6 @@
 import '../dashboard_screen/widgets/dashboard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/app_bar/appbar_image.dart';
-import 'package:groumally/widgets/app_bar/custom_app_bar.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -10,50 +8,20 @@ class DashboardScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
-        appBar: CustomAppBar(
-          height: getVerticalSize(70),
-          title: AppbarImage(
-            height: getVerticalSize(
-              14,
-            ),
-            width: getHorizontalSize(
-              42,
-            ),
-            svgPath: ImageConstant.imgCut,
-            margin: getMargin(
-              left: 135,
-            ),
-          ),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text("Groomely",
+              style: TextStyle(fontSize: 20, color: Colors.black)),
           actions: [
-            AppbarImage(
-              height: getVerticalSize(
-                10,
-              ),
-              width: getHorizontalSize(
-                13,
-              ),
-              svgPath: ImageConstant.imgSearch,
-              margin: getMargin(
-                left: 15,
-                right: 16,
-                bottom: 2,
-              ),
-            ),
-            AppbarImage(
-              height: getVerticalSize(
-                9,
-              ),
-              width: getHorizontalSize(
-                15,
-              ),
-              svgPath: ImageConstant.imgNotification,
-              margin: getMargin(
-                left: 11,
-                right: 31,
-              ),
-            ),
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                ))
           ],
-          styleType: Style.bgShadowBlack90014,
         ),
         body: SingleChildScrollView(
           padding: getPadding(
@@ -325,73 +293,47 @@ class DashboardScreen extends StatelessWidget {
                                                       .txtInterLight14Black900,
                                                 ),
                                               ),
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: IntrinsicWidth(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        CustomImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgClock,
-                                                          height: getSize(
-                                                            16,
-                                                          ),
-                                                          width: getSize(
-                                                            16,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            top: 5,
-                                                          ),
-                                                          child: Text(
-                                                            "115",
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: AppStyle
-                                                                .txtInterBold24,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            top: 5,
-                                                          ),
-                                                          child: SizedBox(
-                                                            width:
-                                                                getHorizontalSize(
-                                                              150,
-                                                            ),
-                                                            child: Divider(
-                                                              height:
-                                                                  getVerticalSize(
-                                                                1,
-                                                              ),
-                                                              thickness:
-                                                                  getVerticalSize(
-                                                                1,
-                                                              ),
-                                                              color:
-                                                                  ColorConstant
-                                                                      .black900,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                              IntrinsicWidth(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    CustomImageView(
+                                                      svgPath: ImageConstant
+                                                          .imgClock,
+                                                      height: getSize(
+                                                        10,
+                                                      ),
+                                                      width: getSize(
+                                                        10,
+                                                      ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        top: 5,
+                                                      ),
+                                                      child: SizedBox(
+                                                        width:
+                                                            getHorizontalSize(
+                                                          150,
+                                                        ),
+                                                        child: Divider(
+                                                          height:
+                                                              getVerticalSize(
+                                                            1,
+                                                          ),
+                                                          thickness:
+                                                              getVerticalSize(
+                                                            1,
+                                                          ),
+                                                          color: ColorConstant
+                                                              .black900,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],

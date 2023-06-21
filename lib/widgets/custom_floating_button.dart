@@ -10,7 +10,9 @@ class CustomFloatingButton extends StatelessWidget {
       this.onTap,
       this.width,
       this.height,
-      this.child});
+      this.child,
+      this.backgroundColor
+      });
 
   FloatingButtonShape? shape;
 
@@ -28,6 +30,8 @@ class CustomFloatingButton extends StatelessWidget {
 
   Widget? child;
 
+  Color? backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return alignment != null
@@ -42,7 +46,7 @@ class CustomFloatingButton extends StatelessWidget {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
       child: FloatingActionButton(
-        backgroundColor: _setColor(),
+        backgroundColor: backgroundColor,
         onPressed: onTap,
         child: Container(
           alignment: Alignment.center,
@@ -57,17 +61,12 @@ class CustomFloatingButton extends StatelessWidget {
 
   _buildDecoration() {
     return BoxDecoration(
-      color: _setColor(),
+      color: backgroundColor,
       borderRadius: _setBorderRadius(),
     );
   }
 
-  _setColor() {
-    switch (variant) {
-      default:
-        return ColorConstant.gray200;
-    }
-  }
+
 
   _setBorderRadius() {
     switch (shape) {

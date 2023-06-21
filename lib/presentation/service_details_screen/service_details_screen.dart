@@ -3,14 +3,41 @@ import 'package:groumally/core/app_export.dart';
 import 'package:groumally/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groumally/widgets/custom_floating_button.dart';
 
+import '../../feature/service/manage_service/model/service_model.dart';
+
 class ServiceDetailsScreen extends StatelessWidget {
+  Data? serviceData;
+
+  ServiceDetailsScreen({required this.serviceData});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
-            appBar: AppBar(),
+            appBar: AppBar(
+              elevation: 2,
+              leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back_ios, color: Colors.black)),
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.white,
+              centerTitle: true,
+              title: Text("Service Details",
+                  style: TextStyle(fontSize: 20, color: Colors.black)),
+              actions: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.black,
+                    ))
+              ],
+            ),
             body: Container(
+              padding: EdgeInsets.only(top: 10),
                 height: getVerticalSize(807),
                 width: double.maxFinite,
                 decoration: AppDecoration.fillGray200,
@@ -78,7 +105,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                                                                     getPadding(
                                                                         top: 4),
                                                                 child: Text(
-                                                                    "Artificial hair extensions",
+                                                                    "${serviceData?.service?.additionalService?.name}",
                                                                     overflow:
                                                                         TextOverflow
                                                                             .ellipsis,
@@ -101,7 +128,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 2),
-                                                  child: Text("Men",
+                                                  child: Text("${serviceData?.service?.category?.name}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -121,7 +148,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 3),
-                                                  child: Text("Styling",
+                                                  child: Text("${serviceData?.service?.serviceType?.name}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -140,7 +167,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 6),
-                                                  child: Text("1 hr 5 mins",
+                                                  child: Text("${serviceData?.service?.duration}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -159,7 +186,7 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 6),
-                                                  child: Text("115",
+                                                  child: Text("${serviceData?.rate}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -243,34 +270,43 @@ class ServiceDetailsScreen extends StatelessWidget {
                                                           right: 17,
                                                           bottom: 30),
                                                       child: Text(
-                                                          "Lorem ipsum dolor sit amet consectetur. Vulputate a egestas consequat amet lectus diam sit. Ullamcorper dapibus nulla sit sed ullamcorper ultricies pretium interdum diam. Dolor at cursus turpis id convallis. Nisi mi cursus erat leo sit purus. Pellentesque pretium mauris semper ut non quisque viverra tristique eu.",
+                                                          "${serviceData?.service?.description}",
                                                           maxLines: null,
                                                           textAlign:
                                                               TextAlign.left,
                                                           style: AppStyle
                                                               .txtInterLight12)))
                                             ]))),
+                                  SizedBox(height: 20),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomFloatingButton(
-                                      child: Icon(Icons.edit),
+                                      backgroundColor: ColorConstant.lightBlue400,
                                       onTap: () {
-                                        Navigator.push(context,MaterialPageRoute(builder: (context)=>EditDetailsScreen()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditDetailsScreen()));
                                       },
+                                      height: 71,
+                                      width: 71,
+                                      child: Icon(Icons.edit)
                                     ),
                                     SizedBox(width: 20),
                                     CustomFloatingButton(
-                                      child: Icon(Icons.delete),
-                                      onTap: () {},
+                                      backgroundColor: ColorConstant.redA200,
+                                      onTap: () {
+                                      
+                                      },
+                                      height: 71,
+                                      width: 71,
+                                      child: Icon(Icons.delete)
                                     ),
                                   ],
                                 )
                               ])))
                 ]))));
-  }
-
-  onTapArrowleft(BuildContext context) {
-    Navigator.pop(context);
   }
 }

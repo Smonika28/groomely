@@ -1,44 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/app_bar/appbar_image.dart';
-import 'package:groumally/widgets/app_bar/appbar_subtitle.dart';
-import 'package:groumally/widgets/app_bar/appbar_title.dart';
-import 'package:groumally/widgets/app_bar/custom_app_bar.dart';
 import 'package:groumally/widgets/custom_button.dart';
-
 class AddServiceScreen extends StatelessWidget {
+   TextEditingController serviceController = TextEditingController();
+   TextEditingController categoryController = TextEditingController();
+   TextEditingController serviceTypeController = TextEditingController();
+   TextEditingController  durationController = TextEditingController();
+   TextEditingController desController = TextEditingController();
+   TextEditingController offerController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
-            appBar: CustomAppBar(
-                height: getVerticalSize(82),
-                title: Padding(
-                    padding: getPadding(left: 12),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AppbarSubtitle(
-                              text: "9:30",
-                              margin: getMargin(left: 3, right: 227)),
-                          Padding(
-                              padding: getPadding(top: 8),
-                              child: Row(children: [
-                                AppbarImage(
-                                    height: getSize(36),
-                                    width: getSize(36),
-                                    svgPath: ImageConstant.imgArrowleft,
-                                    margin: getMargin(top: 1),
-                                    onTap: () {
-                                      onTapArrowleft2(context);
-                                    }),
-                                AppbarTitle(
-                                    text: "Add Service",
-                                    margin: getMargin(left: 104, bottom: 12))
-                              ]))
-                        ])),
-                styleType: Style.bgShadowBlack90014),
+            appBar:  AppBar(
+              leading: GestureDetector(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back_ios,color: Colors.black)),
+          automaticallyImplyLeading:false,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text("Add Service",style: TextStyle(fontSize:20,color: Colors.black)),
+          actions: [
+            IconButton(onPressed: (){}, icon:Icon(Icons.notifications,color: Colors.black,))
+          ],
+        ),
             body: SizedBox(
                 width: size.width,
                 child: SingleChildScrollView(
@@ -306,30 +296,9 @@ class AddServiceScreen extends StatelessWidget {
                                                                     .centerRight)
                                                           ])))
                                                 ])),
-                                            Padding(
-                                                padding: getPadding(
-                                                    left: 23, top: 10),
-                                                child: Text("Duration",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtInterRegular14)),
-                                            Container(
-                                                height: getVerticalSize(55),
-                                                width: getHorizontalSize(356),
-                                                margin: getMargin(top: 6),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            getHorizontalSize(
-                                                                27)),
-                                                    border: Border.all(
-                                                        color: ColorConstant
-                                                            .gray700,
-                                                        width:
-                                                            getHorizontalSize(
-                                                                1)))),
+                                        
+                                           
+                                           
                                             CustomButton(
                                                 height: getVerticalSize(55),
                                                 text: "ADD SERVICE",
