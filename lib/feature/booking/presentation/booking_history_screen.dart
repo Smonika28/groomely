@@ -42,7 +42,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         backgroundColor: ColorConstant.whiteA700,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          elevation: 5,
+          elevation: 2,
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           centerTitle: true,

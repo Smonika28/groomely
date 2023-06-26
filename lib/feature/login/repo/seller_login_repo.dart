@@ -9,6 +9,4 @@ class LoginRepository{
     return apiProvider.dataProcessor(reqModel, sellerLoginModel,Apis.login);
   }
 }
-
-
 class NetworkError extends Error {}

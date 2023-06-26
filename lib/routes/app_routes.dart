@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/feature/login/presentation/login_screen.dart';
-import 'package:groumally/presentation/profile/profile_screen.dart';
+import 'package:groumally/feature/profile/presentation/profile_screen.dart';
 import 'package:groumally/presentation/signup_screen/signup_screen.dart';
-import 'package:groumally/presentation/dashboard_screen/dashboard_screen.dart';
+import 'package:groumally/feature/dashboard_screen/presentation/dashboard_screen.dart';
 import 'package:groumally/presentation/manage_services_container1_screen/manage_services_container1_screen.dart';
 // import 'package:groumally/presentation/service_details_screen/service_details_screen.dart';
 import 'package:groumally/presentation/edit_details_screen/edit_details_screen.dart';
-import 'package:groumally/presentation/add_service_screen/add_service_screen.dart';
+import 'package:groumally/feature/service/add_service_screen/presentation/add_service_screen.dart';
 import 'package:groumally/feature/booking/presentation/booking_history_screen.dart';
 
 

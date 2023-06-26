@@ -85,7 +85,6 @@ class CustomRadioButton extends StatelessWidget {
       ],
     );
   }
-
   Widget getTextWidget() {
     return Text(
       text ?? "",
@@ -93,7 +92,6 @@ class CustomRadioButton extends StatelessWidget {
       style: _setFontStyle(),
     );
   }
-
   Widget getRadioWidget() {
     return SizedBox(
       height: iconSize,

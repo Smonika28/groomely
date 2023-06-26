@@ -14,6 +14,12 @@ dependencies:
   shared_preferences:
   table_calendar:
   flutter_bloc: ^8.1.2
+  shimmer: ^2.0.0
+  pdf:
+  printing:
+  image_picker: ^0.8.9
+ 
+
 dev_dependencies: 
   flutter_test: 
     sdk: flutter

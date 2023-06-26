@@ -27,7 +27,7 @@ class CustomSwitch extends StatelessWidget {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
       child: FlutterSwitch(
-        value: value ?? false,
+        value: value ?? true,
         height: getHorizontalSize(24),
         width: getHorizontalSize(63),
         toggleSize: 19,

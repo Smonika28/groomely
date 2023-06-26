@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groumally/feature/service/manage_service/bloc/manage_service_bloc.dart';
 import 'package:groumally/feature/service/manage_service/model/service_model.dart';
-import 'package:groumally/presentation/add_service_screen/add_service_screen.dart';
-import 'package:groumally/presentation/service_details_screen/service_details_screen.dart';
+import 'package:groumally/feature/service/add_service_screen/presentation/add_service_screen.dart';
+import 'package:groumally/feature/service/service_details_screen/service_details_screen.dart';
 import '../../../../widgets/listservicename_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
@@ -60,14 +60,7 @@ class _ManageServicesContainerPageState
                     textAlign: TextAlign.left,
                     style: AppStyle.txtInterBold20,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            _buildPopupDialog(context),
-                      );
-                    },
+                  PopupMenuButton(
                     child: CustomImageView(
                       svgPath: ImageConstant.imgFilter,
                       height: getVerticalSize(
@@ -81,6 +74,51 @@ class _ManageServicesContainerPageState
                         bottom: 2,
                       ),
                     ),
+                    itemBuilder: (context) {
+                      return List.generate(1, (index) {
+                        return PopupMenuItem(
+                            child: Container(
+                              width: 250,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50)
+                              ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Filter"),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      icon: Icon(Icons.close))
+                                ],
+                              ),
+                              Divider(),
+                              Text("Status"),
+                              Row(
+                                children: [
+                                  Checkbox.adaptive(
+                                      value: true, onChanged: (v) {}),
+                                  Text("Active"),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox.adaptive(
+                                      value: true, onChanged: (v) {}),
+                                  Text("Inactive"),
+                                ],
+                              )
+                            ],
+                          ),
+                        ));
+                      });
+                    },
                   ),
                 ],
               ),

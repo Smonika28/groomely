@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
 import 'package:groumally/feature/booking/presentation/booking_history_screen.dart';
-import 'package:groumally/presentation/dashboard_screen/dashboard_screen.dart';
+import 'package:groumally/feature/dashboard_screen/presentation/dashboard_screen.dart';
 import 'package:groumally/feature/service/manage_service/presentation/manage_services_container_page.dart';
-import 'package:groumally/presentation/profile/profile_screen.dart';
+import 'package:groumally/feature/profile/presentation/profile_screen.dart';
 import 'package:groumally/widgets/custom_bottom_bar.dart';
 
 // ignore_for_file: must_be_immutable

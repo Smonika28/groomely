@@ -3,7 +3,7 @@ import 'package:groumally/core/app_export.dart';
 import 'package:groumally/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groumally/widgets/custom_floating_button.dart';
 
-import '../../feature/service/manage_service/model/service_model.dart';
+import '../manage_service/model/service_model.dart';
 
 class ServiceDetailsScreen extends StatelessWidget {
   Data? serviceData;
@@ -16,7 +16,8 @@ class ServiceDetailsScreen extends StatelessWidget {
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
             appBar: AppBar(
-              elevation: 2,
+              
+              elevation: 0,
               leading: GestureDetector(
                   onTap: () {
                     Navigator.pop(context);

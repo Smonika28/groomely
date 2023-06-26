@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:groumally/core/app_export.dart';
 import 'package:groumally/feature/service/manage_service/model/service_model.dart';
-import 'package:groumally/presentation/service_details_screen/service_details_screen.dart';
+import 'package:groumally/feature/service/service_details_screen/service_details_screen.dart';
+import 'package:groumally/utils/APi/api_calling.dart';
 import 'package:groumally/widgets/custom_switch.dart';
 
 // ignore: must_be_immutable
-class ListservicenameItemWidget extends StatelessWidget {
+class ListservicenameItemWidget extends StatefulWidget {
   Data serviceData;
   ListservicenameItemWidget({required this.serviceData});
+
+  @override
+  State<ListservicenameItemWidget> createState() => _ListservicenameItemWidgetState();
+}
+
+class _ListservicenameItemWidgetState extends State<ListservicenameItemWidget> {
   bool isSelectedSwitch = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +26,7 @@ class ListservicenameItemWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ServiceDetailsScreen(
-                      serviceData: serviceData,
+                      serviceData: widget.serviceData,
                     )));
       },
       child: Container(
@@ -100,7 +109,7 @@ class ListservicenameItemWidget extends StatelessWidget {
                           top: 2,
                         ),
                         child: Text(
-                          "${serviceData.service?.additionalService?.name}",
+                          "${widget.serviceData.service?.additionalService?.name}",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterLight16,
@@ -138,7 +147,7 @@ class ListservicenameItemWidget extends StatelessWidget {
                               top: 2,
                             ),
                             child: Text(
-                              "${serviceData.service?.category?.name}",
+                              "${widget.serviceData.service?.category?.name}",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterLight16,
@@ -166,7 +175,7 @@ class ListservicenameItemWidget extends StatelessWidget {
                               top: 3,
                             ),
                             child: Text(
-                              "${serviceData.service?.serviceType?.name}",
+                              "${widget.serviceData.service?.serviceType?.name}",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterLight16,
@@ -190,7 +199,7 @@ class ListservicenameItemWidget extends StatelessWidget {
                             top: 6,
                           ),
                           child: Text(
-                            "${serviceData.service?.duration}",
+                            "${widget.serviceData.service?.duration}",
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
                             style: AppStyle.txtInterLight16,
@@ -270,13 +279,24 @@ class ListservicenameItemWidget extends StatelessWidget {
                       Spacer(
                         flex: 51,
                       ),
-                      CustomSwitch(
-                        margin: getMargin(
-                          top: 13,
-                        ),
+                      FlutterSwitch(
                         value: isSelectedSwitch,
-                        onChanged: (value) {
-                          isSelectedSwitch = value;
+                        height: getHorizontalSize(24),
+                        width: getHorizontalSize(63),
+                        toggleSize: 19,
+                        borderRadius: getHorizontalSize(
+                          12.00,
+                        ),
+                        activeColor: ColorConstant.greenA700,
+                        activeToggleColor: ColorConstant.whiteA700,
+                        inactiveColor: ColorConstant.gray500,
+                        inactiveToggleColor: ColorConstant.whiteA700,
+                        onToggle: (value) {
+                        ApiCallingClass().toggleService(serviceID:widget.serviceData.service!.id.toString(),Status: value).then((v) =>{
+                          setState(() {
+                           isSelectedSwitch = value;
+                        })
+                        });
                         },
                       ),
                     ],
