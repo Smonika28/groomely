@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groumally/core/app_export.dart';
+import 'package:groumally/feature/service/add_service_screen/presentation/add_service_screen.dart';
 import 'package:groumally/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groumally/widgets/custom_floating_button.dart';
 
@@ -289,22 +290,22 @@ class ServiceDetailsScreen extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EditDetailsScreen()));
+                                                    AddServiceScreen()));
                                       },
                                       height: 71,
                                       width: 71,
                                       child: Icon(Icons.edit)
                                     ),
-                                    SizedBox(width: 20),
-                                    CustomFloatingButton(
-                                      backgroundColor: ColorConstant.redA200,
-                                      onTap: () {
+                                    // SizedBox(width: 20),
+                                    // CustomFloatingButton(
+                                    //   backgroundColor: ColorConstant.redA200,
+                                    //   onTap: () {
                                       
-                                      },
-                                      height: 71,
-                                      width: 71,
-                                      child: Icon(Icons.delete)
-                                    ),
+                                    //   },
+                                    //   height: 71,
+                                    //   width: 71,
+                                    //   child: Icon(Icons.delete)
+                                    // ),
                                   ],
                                 )
                               ])))

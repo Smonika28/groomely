@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           visualDensity: VisualDensity.standard,
         ),
-        title: 'groumally',
+        title: 'grooumelly',
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.loginScreen,
         routes: AppRoutes.routes,

@@ -9,16 +9,16 @@ class ServiceFieldModel {
     message = json['message'];
   }
 
-  // ServiceFieldModel.withError(String errorMsg) {
-  //   message = errorMsg;
-  // }
-  // insertToJson(Map<String, dynamic> json) {
-  //   return ServiceFieldModel.fromJson(json);
-  // }
+  ServiceFieldModel.withError(String errorMsg) {
+    message = errorMsg;
+  }
+  insertToJson(Map<String, dynamic> json) {
+    return ServiceFieldModel.fromJson(json);
+  }
 
-  // insertToError(String errorMsg) {
-  //   return ServiceFieldModel.withError(errorMsg);
-  // }
+  insertToError(String errorMsg) {
+    return ServiceFieldModel.withError(errorMsg);
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

@@ -44,15 +44,17 @@ class FetchAllFieldBloc
             {"service_id": event.serviceID},
             serviceFieldModel,
             Apis.serviceDetailById);
-        print("my data--> $myData");
+        print("mydata--> ${myData.status}");
         if (myData != null && myData.status == true) {
           print("field loaded--> ${myData.toJson()}");
           emit(FetchAllServiceDetailsFieldSetDoneState(
               detailServiceModel: myData));
         } else {
+          print("errorState-->");
           emit(FetchAllServiceDetailsFieldSetfaildState());
         }
       } catch (e) {
+        print("cache->$e");
         emit(FetchAllServiceDetailsFieldSetfaildState());
       }
     });

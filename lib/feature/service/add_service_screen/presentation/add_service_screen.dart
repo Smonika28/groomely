@@ -7,12 +7,10 @@ import 'package:groumally/widgets/custom_button.dart';
 import 'package:groumally/widgets/custom_dropdown.dart';
 import 'package:groumally/widgets/custom_text_form_field.dart';
 import 'package:shimmer/shimmer.dart';
-
 class AddServiceScreen extends StatefulWidget {
   @override
   State<AddServiceScreen> createState() => _AddServiceScreenState();
 }
-
 class _AddServiceScreenState extends State<AddServiceScreen> {
   TextEditingController serviceController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
@@ -151,7 +149,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                               AppStyle.txtInterRegular14)),
                                   Container(
                                       alignment: Alignment.centerLeft,
-                                      child: Text("pandey jiii"),
+                                      child: Text(state.detailServiceModel.data!.category!.name!),
                                       height: getVerticalSize(55),
                                       width: getHorizontalSize(356),
                                       margin: getMargin(top: 6),
@@ -174,7 +172,9 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       height: getVerticalSize(55),
                                       width: getHorizontalSize(356),
                                       margin: getMargin(top: 5),
+                                      child: Text(state.detailServiceModel.data!.serviceType!.name!),
                                       decoration: BoxDecoration(
+
                                           borderRadius:
                                               BorderRadius.circular(
                                                   getHorizontalSize(27)),
@@ -193,6 +193,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       height: getVerticalSize(55),
                                       width: getHorizontalSize(356),
                                       margin: getMargin(top: 6),
+                                      child: Text(state.detailServiceModel.data!.duration!),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(
@@ -212,6 +213,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       height: getVerticalSize(147),
                                       width: getHorizontalSize(356),
                                       margin: getMargin(top: 5),
+                                      child: Text(state.detailServiceModel.data!.description!),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(
@@ -249,7 +251,9 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                                                   .left,
                                                           style: AppStyle
                                                               .txtInterRegular14)),
-                                                  CustomTextFormField()
+                                                  CustomTextFormField(
+                                                    hintText: "${state.detailServiceModel.data!.offer!.offerAmount}",
+                                                  )
                                                 ])),
                                             Checkbox(
                                                 value: true,
