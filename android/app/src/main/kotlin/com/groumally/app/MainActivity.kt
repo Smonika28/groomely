@@ -1,4 +1,4 @@
-package com.groumally.app
+package com.groomely.seller.app
 
 import io.flutter.embedding.android.FlutterActivity
 

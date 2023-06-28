@@ -1,7 +1,7 @@
 
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
-import 'package:groumally/utils/APi/api_helper.dart';
+import 'package:groomely_seller/utils/APi/api_helper.dart';
 
 
 class ApiProvider with ApiHelper{

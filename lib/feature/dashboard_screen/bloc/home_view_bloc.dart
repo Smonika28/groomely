@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:groumally/core/api/api_string.dart';
-import 'package:groumally/feature/dashboard_screen/model/dhashview_model.dart';
-import 'package:groumally/utils/APi/api_provider.dart';
+import 'package:groomely_seller/core/api/api_string.dart';
+import 'package:groomely_seller/feature/dashboard_screen/model/dhashview_model.dart';
+import 'package:groomely_seller/utils/APi/api_provider.dart';
 import 'package:meta/meta.dart';
 
 part 'home_view_event.dart';

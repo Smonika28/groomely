@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/booking/model/booking_history.dart';
-import 'package:groumally/widgets/custom_button.dart';
-import 'package:groumally/widgets/invoice/pdfexport/pdf_previcew.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/booking/model/booking_history.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
+import 'package:groomely_seller/widgets/invoice/pdfexport/pdf_previcew.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   Data bookingHistoryData;

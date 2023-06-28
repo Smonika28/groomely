@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:groumally/feature/booking/model/booking_history.dart';
-import 'package:groumally/feature/booking/repo/booking_history_repo.dart';
+import 'package:groomely_seller/feature/booking/model/booking_history.dart';
+import 'package:groomely_seller/feature/booking/repo/booking_history_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'booking_history_event.dart';

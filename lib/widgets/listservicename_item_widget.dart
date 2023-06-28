@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/service/manage_service/model/service_model.dart';
-import 'package:groumally/feature/service/service_details_screen/service_details_screen.dart';
-import 'package:groumally/utils/APi/api_calling.dart';
-import 'package:groumally/widgets/custom_switch.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/service/manage_service/model/service_model.dart';
+import 'package:groomely_seller/feature/service/service_details_screen/service_details_screen.dart';
+import 'package:groomely_seller/utils/APi/api_calling.dart';
+import 'package:groomely_seller/widgets/custom_switch.dart';
 
 // ignore: must_be_immutable
 class ListservicenameItemWidget extends StatefulWidget {

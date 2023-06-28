@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/custom_button.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
 
 // ignore: must_be_immutable
 class DashboardItemWidget extends StatelessWidget {

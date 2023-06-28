@@ -1,6 +1,6 @@
-import 'package:groumally/core/api/api_string.dart';
-import 'package:groumally/feature/booking/model/booking_history.dart';
-import 'package:groumally/utils/APi/api_provider.dart';
+import 'package:groomely_seller/core/api/api_string.dart';
+import 'package:groomely_seller/feature/booking/model/booking_history.dart';
+import 'package:groomely_seller/utils/APi/api_provider.dart';
 
 class BookingHistoryRepo{
   final apiProvider = ApiProvider();

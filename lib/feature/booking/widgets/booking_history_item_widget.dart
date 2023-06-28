@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/booking/model/booking_history.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/booking/model/booking_history.dart';
 
 // ignore: must_be_immutable
 class BookingHistoryItemWidget extends StatelessWidget {

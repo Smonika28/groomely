@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:bloc/bloc.dart';
-import 'package:groumally/feature/login/model/seller_login_res_model.dart';
-import 'package:groumally/feature/login/repo/seller_login_repo.dart';
-import 'package:groumally/utils/storage/local_storage.dart';
+import 'package:groomely_seller/feature/login/model/seller_login_res_model.dart';
+import 'package:groomely_seller/feature/login/repo/seller_login_repo.dart';
+import 'package:groomely_seller/utils/storage/local_storage.dart';
 import 'package:meta/meta.dart';
 part 'seller_login_event.dart';
 part 'seller_login_state.dart';

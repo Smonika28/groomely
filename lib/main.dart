@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/feature/booking/bloc/booking_history_bloc.dart';
-import 'package:groumally/feature/booking/widgets/booking_history_invocie.dart';
-import 'package:groumally/feature/dashboard_screen/bloc/home_view_bloc.dart';
-import 'package:groumally/feature/login/bloc/seller_login_bloc.dart';
-import 'package:groumally/feature/profile/bloc/user_profile_bloc.dart';
-import 'package:groumally/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
-import 'package:groumally/feature/service/manage_service/bloc/manage_service_bloc.dart';
-import 'package:groumally/routes/app_routes.dart';
+import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
+import 'package:groomely_seller/feature/booking/widgets/booking_history_invocie.dart';
+import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
+import 'package:groomely_seller/feature/login/bloc/seller_login_bloc.dart';
+import 'package:groomely_seller/feature/profile/bloc/user_profile_bloc.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
+import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
+import 'package:groomely_seller/routes/app_routes.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {

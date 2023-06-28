@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:groumally/feature/service/manage_service/model/service_model.dart';
-import 'package:groumally/feature/service/repo/service_repo.dart';
+import 'package:groomely_seller/feature/service/manage_service/model/service_model.dart';
+import 'package:groomely_seller/feature/service/repo/service_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'manage_service_event.dart';

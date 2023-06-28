@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:groumally/core/app_export.dart';
+import 'package:groomely_seller/core/app_export.dart';
 
 class CustomSwitch extends StatelessWidget {
   CustomSwitch({this.alignment, this.margin, this.value, this.onChanged});

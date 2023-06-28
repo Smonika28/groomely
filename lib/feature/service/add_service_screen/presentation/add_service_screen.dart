@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
-import 'package:groumally/widgets/custom_button.dart';
-import 'package:groumally/widgets/custom_dropdown.dart';
-import 'package:groumally/widgets/custom_text_form_field.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
+import 'package:groomely_seller/widgets/custom_dropdown.dart';
+import 'package:groomely_seller/widgets/custom_text_form_field.dart';
 import 'package:shimmer/shimmer.dart';
 class AddServiceScreen extends StatefulWidget {
   @override

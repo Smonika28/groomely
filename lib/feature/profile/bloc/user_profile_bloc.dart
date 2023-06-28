@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:groumally/core/api/api_string.dart';
-import 'package:groumally/feature/profile/model/profile_model.dart';
-import 'package:groumally/utils/APi/api_provider.dart';
+import 'package:groomely_seller/core/api/api_string.dart';
+import 'package:groomely_seller/feature/profile/model/profile_model.dart';
+import 'package:groomely_seller/utils/APi/api_provider.dart';
 import 'package:meta/meta.dart';
 part 'user_profile_event.dart';
 part 'user_profile_state.dart';

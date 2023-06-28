@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
+import 'package:groomely_seller/core/app_export.dart';
 
 class AppDecoration {
   static BoxDecoration get fillOrangeA200 => BoxDecoration(

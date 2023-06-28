@@ -1,13 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/login/bloc/seller_login_bloc.dart';
-import 'package:groumally/feature/signup/presentaion/signup_screen.dart';
-import 'package:groumally/utils/Toast/app_toast.dart';
-import 'package:groumally/widgets/custom_button.dart';
-import 'package:groumally/widgets/custom_radio_button.dart';
-import 'package:groumally/widgets/custom_text_form_field.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/login/bloc/seller_login_bloc.dart';
+import 'package:groomely_seller/feature/signup/presentaion/signup_screen.dart';
+import 'package:groomely_seller/utils/Toast/app_toast.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
+import 'package:groomely_seller/widgets/custom_radio_button.dart';
+import 'package:groomely_seller/widgets/custom_text_form_field.dart';
 
 import '../../../presentation/manage_services_container1_screen/manage_services_container1_screen.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/feature/booking/bloc/booking_history_bloc.dart';
-import 'package:groumally/feature/booking/widgets/booking_details_screen.dart';
-import 'package:groumally/widgets/table_calander.dart';
+import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
+import 'package:groomely_seller/feature/booking/widgets/booking_details_screen.dart';
+import 'package:groomely_seller/widgets/table_calander.dart';
 import '../widgets/booking_history_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
+import 'package:groomely_seller/core/app_export.dart';
 
 // ignore: must_be_immutable
 class BookingHistoryScreen extends StatefulWidget {

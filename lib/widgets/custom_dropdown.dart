@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
-import 'package:groumally/feature/service/add_service_screen/model/all_service_model.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/model/all_service_model.dart';
 class CustomDropDown extends StatefulWidget {
   CustomDropDown({required this.onChanged, required this.items});
   void Function(String?)? onChanged;

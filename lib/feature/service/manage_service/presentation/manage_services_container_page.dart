@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/feature/service/manage_service/bloc/manage_service_bloc.dart';
-import 'package:groumally/feature/service/manage_service/model/service_model.dart';
-import 'package:groumally/feature/service/add_service_screen/presentation/add_service_screen.dart';
-import 'package:groumally/feature/service/service_details_screen/service_details_screen.dart';
+import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
+import 'package:groomely_seller/feature/service/manage_service/model/service_model.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
+import 'package:groomely_seller/feature/service/service_details_screen/service_details_screen.dart';
 import '../../../../widgets/listservicename_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/custom_floating_button.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/widgets/custom_floating_button.dart';
 
 // ignore_for_file: must_be_immutable
 class ManageServicesContainerPage extends StatefulWidget {

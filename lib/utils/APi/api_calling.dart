@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:groumally/core/api/api_string.dart';
-import 'package:groumally/feature/service/add_service_screen/model/details_service_model.dart';
-import 'package:groumally/utils/APi/api_provider.dart';
-import 'package:groumally/utils/storage/local_storage.dart';
+import 'package:groomely_seller/core/api/api_string.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/model/details_service_model.dart';
+import 'package:groomely_seller/utils/APi/api_provider.dart';
+import 'package:groomely_seller/utils/storage/local_storage.dart';
 
 class ApiCallingClass {
   final Dio _dio = Dio();

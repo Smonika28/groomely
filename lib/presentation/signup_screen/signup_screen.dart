@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/widgets/custom_button.dart';
-import 'package:groumally/widgets/custom_radio_button.dart';
-import 'package:groumally/widgets/custom_text_form_field.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
+import 'package:groomely_seller/widgets/custom_radio_button.dart';
+import 'package:groomely_seller/widgets/custom_text_form_field.dart';
 
 class SignupScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();

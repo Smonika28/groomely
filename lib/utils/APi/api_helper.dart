@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:groumally/utils/storage/local_storage.dart';
+import 'package:groomely_seller/utils/storage/local_storage.dart';
 
 mixin ApiHelper {
   final Dio _dio = Dio();

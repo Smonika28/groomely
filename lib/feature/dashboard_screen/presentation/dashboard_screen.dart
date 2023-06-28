@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groumally/feature/dashboard_screen/bloc/home_view_bloc.dart';
+import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../widgets/dashboard_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
+import 'package:groomely_seller/core/app_export.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groumally/core/app_export.dart';
-import 'package:groumally/feature/service/add_service_screen/presentation/add_service_screen.dart';
-import 'package:groumally/presentation/edit_details_screen/edit_details_screen.dart';
-import 'package:groumally/widgets/custom_floating_button.dart';
+import 'package:groomely_seller/core/app_export.dart';
+import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
+import 'package:groomely_seller/presentation/edit_details_screen/edit_details_screen.dart';
+import 'package:groomely_seller/widgets/custom_floating_button.dart';
 
 import '../manage_service/model/service_model.dart';
 
