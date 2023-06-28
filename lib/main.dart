@@ -9,8 +9,9 @@ import 'package:groomely_seller/feature/profile/bloc/user_profile_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
 import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
 import 'package:groomely_seller/routes/app_routes.dart';
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -30,15 +31,31 @@ class MyApp extends StatelessWidget {
         BlocProvider<FetchAllFieldBloc>(create: (context)=>FetchAllFieldBloc())
       ],
       child: MaterialApp(
+        
         theme: ThemeData(
           visualDensity: VisualDensity.standard,
+          useMaterial3: true
         ),
         title: 'grooumelly',
+        
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.loginScreen,
         routes: AppRoutes.routes,
-        // home: BookingHistoryInvoce(),
+        // home: MyTest(),
       ),
+    );
+  }
+}
+class MyTest extends StatelessWidget {
+  const MyTest({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("test"),
+      ),
+      body: Center(child: Text("Body Test")),
     );
   }
 }
