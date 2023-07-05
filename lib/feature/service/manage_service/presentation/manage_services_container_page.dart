@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
-import 'package:groomely_seller/feature/service/manage_service/model/service_model.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
-import 'package:groomely_seller/feature/service/service_details_screen/service_details_screen.dart';
+import '../../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
 import '../../../../widgets/listservicename_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
@@ -37,7 +36,12 @@ class _ManageServicesContainerPageState
               style: TextStyle(fontSize: 20, color: Colors.black)),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NotificatonScreen()));
+                },
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.black,
@@ -78,10 +82,9 @@ class _ManageServicesContainerPageState
                       return List.generate(1, (index) {
                         return PopupMenuItem(
                             child: Container(
-                              width: 250,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50)
-                              ),
+                          width: 250,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,

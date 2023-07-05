@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
 import '../widgets/dashboard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
@@ -30,13 +31,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
           centerTitle: true,
           title: Text("Groomely",
               style: TextStyle(fontSize: 20, color: Colors.black)),
+
+
           actions: [
+
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                   // Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificatonScreen()));
+                   // Navigator.pushNamed(context, AppRoutes.notificatonScreen);
+                },
                 icon: Icon(
                   Icons.notifications,
                   color: Colors.black,
-                ))
+                )),
           ],
         ),
         body: SingleChildScrollView(
@@ -268,6 +276,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                 child: Text(
                                                   "${state.homeViewModel.data?.activeServices![index].service?.additionalService?.name}"
                                                       .toUpperCase(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   maxLines: null,
                                                   textAlign: TextAlign.left,
                                                   style:
@@ -323,7 +333,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                 ),
                                                 child: Row(
                                                   children: [
-                                                      CustomImageView(
+                                                    CustomImageView(
                                                       svgPath: ImageConstant
                                                           .imgClock,
                                                       height: getSize(
@@ -333,18 +343,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                         20,
                                                       ),
                                                     ),
-                                                    SizedBox(width:10),
+                                                    SizedBox(width: 10),
                                                     Text(
                                                       "${state.homeViewModel.data?.activeServices![index].service?.duration}",
-                                                      overflow: TextOverflow
-                                                          .ellipsis,
-                                                      textAlign:
-                                                          TextAlign.left,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
                                                       style: AppStyle
                                                           .txtInterLight14Black900,
                                                     ),
-                                                   
-                                                   
                                                   ],
                                                 ),
                                               ),
@@ -352,8 +359,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                 padding: getPadding(
                                                   top: 4,
                                                 ),
-                                                child: Text("\$ "+
-                                                  "${state.homeViewModel.data?.activeServices![index].rate}",
+                                                child: Text(
+                                                  "\$ " +
+                                                      "${state.homeViewModel.data?.activeServices![index].rate}",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -542,30 +550,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             height: getVerticalSize(
                               280,
                             ),
-                            child:state.homeViewModel.data!.todaysBooking != null? ListView.separated(
-                              padding: getPadding(
-                                left: 15,
-                                top: 21,
-                                bottom: 2,
-                              ),
-                              scrollDirection: Axis.horizontal,
-                              separatorBuilder: (
-                                context,
-                                index,
-                              ) {
-                                return SizedBox(
-                                  height: getVerticalSize(
-                                    13,
-                                  ),
-                                );
-                              },
-                              itemCount: 10,
-                              itemBuilder: (context, index) {
-                                return DashboardItemWidget();
-                              },
-                            ):Align(
-                              alignment: Alignment.center,
-                              child: Text("No Booking")),
+                            child:
+                                state.homeViewModel.data!.todaysBooking != null
+                                    ? ListView.separated(
+                                        padding: getPadding(
+                                          left: 15,
+                                          top: 21,
+                                          bottom: 2,
+                                        ),
+                                        scrollDirection: Axis.horizontal,
+                                        separatorBuilder: (
+                                          context,
+                                          index,
+                                        ) {
+                                          return SizedBox(
+                                            height: getVerticalSize(
+                                              13,
+                                            ),
+                                          );
+                                        },
+                                        itemCount: 10,
+                                        itemBuilder: (context, index) {
+                                          return DashboardItemWidget();
+                                        },
+                                      )
+                                    : Align(
+                                        alignment: Alignment.center,
+                                        child: Text("No Booking")),
                           ),
                         ],
                       ),

@@ -9,6 +9,8 @@ import 'package:groomely_seller/feature/profile/bloc/user_profile_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
 import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
 import 'package:groomely_seller/routes/app_routes.dart';
+
+import 'feature/signup/bloc/seller_signup_bloc.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SellerLoginBloc>(create: (context) => SellerLoginBloc()),
+        BlocProvider<SellerSignupBloc>(create: (context) => SellerSignupBloc()),
         BlocProvider<ManageServiceBloc>(
             create: (context) => ManageServiceBloc()),
         BlocProvider<BookingHistoryBloc>(

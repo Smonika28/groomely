@@ -9,7 +9,7 @@ class PdfPreviewPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('PDF Preview'),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
       ),
       body: PdfPreview(
         build: (context) => makePdf(),
