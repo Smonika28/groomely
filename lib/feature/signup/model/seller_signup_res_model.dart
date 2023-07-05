@@ -1,27 +1,27 @@
-class SellerLoginModel {
+class SellerSignupModel {
   bool? status;
   int? statusCode;
   Data? data;
   String? message;
 
-  SellerLoginModel({this.status, this.statusCode, this.data, this.message});
+  SellerSignupModel({this.status, this.statusCode, this.data, this.message});
 
-  SellerLoginModel.fromJson(Map<String, dynamic> json) {
+  SellerSignupModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     statusCode = json['statusCode'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
   }
 
-  SellerLoginModel.withError(String errorMsg) {
+  SellerSignupModel.withError(String errorMsg) {
     message = errorMsg;
   }
   insertToJson(Map<String, dynamic> json) {
-    return SellerLoginModel.fromJson(json);
+    return SellerSignupModel.fromJson(json);
   }
 
   insertToError(String errorMsg) {
-    return SellerLoginModel.withError(errorMsg);
+    return SellerSignupModel.withError(errorMsg);
   }
 }
 
@@ -51,13 +51,11 @@ class User {
   String? firstName;
   String? lastName;
   String? email;
-  String? phone;
-  String? zipcode;
-  int? status;
-  String? profilePicture;
-  String? shopAddress;
-  String? shopName;
-
+  int? phone;
+  int? zipcode;
+  int? password;
+  int? confirmPassword;
+  String? userType;
   User(
       {this.id,
       this.firstName,
@@ -65,10 +63,9 @@ class User {
       this.email,
       this.phone,
       this.zipcode,
-      this.status,
-      this.profilePicture,
-      this.shopAddress,
-      this.shopName});
+      this.password,
+      this.confirmPassword,
+      this.userType});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -77,24 +74,21 @@ class User {
     email = json['email'];
     phone = json['phone'];
     zipcode = json['zipcode'];
-    status = json['status'];
-    profilePicture = json['profile_picture'];
-    shopAddress = json['shop_address'];
-    shopName = json['shop_name'];
+    password = json['password'];
+    confirmPassword = json['confirm_password'];
+    userType = json['user_type'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
     data['email'] = this.email;
     data['phone'] = this.phone;
     data['zipcode'] = this.zipcode;
-    data['status'] = this.status;
-    data['profile_picture'] = this.profilePicture;
-    data['shop_address'] = this.shopAddress;
-    data['shop_name'] = this.shopName;
+    data['password'] = this.password;
+    data['confirm_password'] = this.confirmPassword;
+    data['user_type'] = this.userType;
     return data;
   }
 }
