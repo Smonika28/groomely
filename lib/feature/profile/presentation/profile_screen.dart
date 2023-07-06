@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groomely_seller/feature/login/model/seller_login_res_model.dart';
-import 'package:groomely_seller/feature/profile/bloc/user_profile_bloc.dart';
-import 'package:groomely_seller/theme/app_decoration.dart';
-import 'package:groomely_seller/theme/app_style.dart';
-import 'package:groomely_seller/utils/image_constant.dart';
-import 'package:groomely_seller/utils/size_utils.dart';
-import 'package:groomely_seller/widgets/custom_image_view.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../routes/app_routes.dart';
+import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
+import '../../../theme/app_decoration.dart';
+import '../../../theme/app_style.dart';
+import '../../../utils/image_constant.dart';
+import '../../../utils/size_utils.dart';
+import '../../../widgets/custom_image_view.dart';
+import '../bloc/user_profile_bloc.dart';
 
 class UserProfileScreen extends StatefulWidget {
   UserProfileScreen({Key? key}) : super(key: key);
@@ -32,11 +33,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       print('Failed to pick image: $e');
     }
   }
+
   @override
   void initState() {
     super.initState();
     BlocProvider.of<UserProfileBloc>(context).add(FetchProfileEvent());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +51,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             style: TextStyle(fontSize: 20, color: Colors.black)),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificatonScreen()));
+              },
               icon: Icon(
                 Icons.notifications,
                 color: Colors.black,
@@ -87,6 +92,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Stack(
+                          alignment: Alignment.bottomRight,
                           children: [
                             GestureDetector(
                               onTap: () {},
@@ -108,8 +114,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                             Container(
-                              width: 36,
-                              height: 36,
+                              width: 26,
+                              height: 26,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.white,
@@ -117,7 +123,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               child: GestureDetector(
                                 child: const Icon(
                                   Icons.camera_alt,
-                                  color: Color(0XFF00C8B8),
+                                  size: 16,
+                                  color: Color(0XFFD5A353),
                                 ),
                                 onTap: () {
                                   print("hello in this ");
@@ -229,23 +236,23 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               contentField(
                                   title: "shop owner name",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.name}"),
+                                  "${state.profileModel.data?.details?.name}"),
                               contentField(
                                   title: "shop name",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.shopName}"),
+                                  "${state.profileModel.data?.details?.shopName}"),
                               contentField(
                                   title: "shop address",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.shopAddress}"),
+                                  "${state.profileModel.data?.details?.shopAddress}"),
                               contentField(
                                   title: "Email",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.email}"),
+                                  "${state.profileModel.data?.details?.email}"),
                               contentField(
                                   title: "Phone number",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.name}"),
+                                  "${state.profileModel.data?.details?.name}"),
                               contentField(
                                   title: "password",
                                   subTitle: "********************"),

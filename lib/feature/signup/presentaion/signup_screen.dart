@@ -1,24 +1,38 @@
+
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groomely_seller/core/app_export.dart';
-import 'package:groomely_seller/feature/login/bloc/seller_login_bloc.dart';
-import 'package:groomely_seller/feature/login/presentation/login_screen.dart';
-import 'package:groomely_seller/utils/Toast/app_toast.dart';
-import 'package:groomely_seller/widgets/custom_button.dart';
-import 'package:groomely_seller/widgets/custom_text_form_field.dart';
 import '../../../presentation/manage_services_container1_screen/manage_services_container1_screen.dart';
+import '../../../theme/app_style.dart';
+import '../../../utils/Toast/app_toast.dart';
+import '../../../utils/color_constant.dart';
+import '../../../utils/image_constant.dart';
+import '../../../utils/size_utils.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_image_view.dart';
+import '../../../widgets/custom_text_form_field.dart';
+import '../../../signup/block/signup_bloc.dart';
+// import '../../signup/bloc/seller_signup_bloc.dart';
+import '../../login/presentation/login_screen.dart';
+import '../../../utils/validate/validation.dart';
+import '../../../utils/validate/validation_regx.dart';
+import '../bloc/seller_signup_bloc.dart';
+// import '../bloc/login_bloc.dart';
 
 class SignUPScreen extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController cnfPasswordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController zipCodeController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    String _errorMessage = '';
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
       // resizeToAvoidBottomInset: false,
@@ -59,24 +73,45 @@ class SignUPScreen extends StatelessWidget {
               CustomTextFormField(
                 focusNode: FocusNode(),
                 autofocus: true,
+                controller: firstNameController,
+                hintText: "First Name",
+                validator: (input) =>
+                    customValidation.validateName(input ?? ' '),
+                margin: getMargin(
+                  left: 60,
+                  top: 23,
+                  right: 61,
+                ),
+                variant: TextFormFieldVariant.OutlineOrangeA200,
+                fontStyle: TextFormFieldFontStyle.InterRegular14,
+                textInputAction: TextInputAction.done,
+                textInputType: TextInputType.emailAddress,
+              ),
+              CustomTextFormField(
+                focusNode: FocusNode(),
+                autofocus: true,
+                controller: lastNameController,
+                hintText: "Last Name",
+                validator: (input) =>
+                    customValidation.validateName(input ?? ' '),
+                margin: getMargin(
+                  left: 60,
+                  top: 23,
+                  right: 61,
+                ),
+                variant: TextFormFieldVariant.OutlineOrangeA200,
+                fontStyle: TextFormFieldFontStyle.InterRegular14,
+                textInputAction: TextInputAction.done,
+                textInputType: TextInputType.emailAddress,
+              ),
+              CustomTextFormField(
+                focusNode: FocusNode(),
+                autofocus: true,
                 controller: emailController,
-                hintText: "Name",
-                margin: getMargin(
-                  left: 60,
-                  top: 23,
-                  right: 61,
-                ),
-                variant: TextFormFieldVariant.OutlineOrangeA200,
-                fontStyle: TextFormFieldFontStyle.InterRegular14,
-                textInputAction: TextInputAction.done,
-                textInputType: TextInputType.emailAddress,
-              ),
-            CustomTextFormField(
-                focusNode: FocusNode(),
-                isObscureText: true,
-                autofocus: true,
-                controller: passwordController,
                 hintText: "Email id",
+                validator: (input) => EmailValidator.validate(input!)
+                    ? null
+                    : "Please valid email id",
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -87,12 +122,13 @@ class SignUPScreen extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-               CustomTextFormField(
+              CustomTextFormField(
                 focusNode: FocusNode(),
-                isObscureText: true,
                 autofocus: true,
-                controller: passwordController,
+                controller: phoneController,
                 hintText: "Phone number",
+                validator: (input) =>
+                    customValidation.validatePhoneNumber(input ?? ' '),
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -103,12 +139,14 @@ class SignUPScreen extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-               CustomTextFormField(
+              CustomTextFormField(
                 focusNode: FocusNode(),
                 isObscureText: true,
                 autofocus: true,
                 controller: passwordController,
-                hintText: "password",
+                hintText: "Password",
+                validator: (input) =>
+                    customValidation.validatePassword(input ?? ' '),
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -119,12 +157,23 @@ class SignUPScreen extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-               CustomTextFormField(
+              CustomTextFormField(
                 focusNode: FocusNode(),
                 isObscureText: true,
                 autofocus: true,
-                controller: passwordController,
-                hintText: "confirm password",
+                controller: cnfPasswordController,
+                hintText: "Confirm Password",
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please re-enter password';
+                  }
+                  print(passwordController.text);
+                  print(cnfPasswordController.text);
+                  if (passwordController.text != cnfPasswordController.text) {
+                    return "Password does not match";
+                  }
+                  return null;
+                },
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -135,33 +184,60 @@ class SignUPScreen extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-              BlocListener<SellerLoginBloc, SellerLoginState>(
+              CustomTextFormField(
+                focusNode: FocusNode(),
+                autofocus: true,
+                controller: zipCodeController,
+                hintText: "Zip Code",
+                validator: (input) =>
+                    customValidation.validateZip(input ?? ' '),
+                margin: getMargin(
+                  left: 60,
+                  top: 23,
+                  right: 61,
+                ),
+                variant: TextFormFieldVariant.OutlineOrangeA200,
+                fontStyle: TextFormFieldFontStyle.InterRegular14,
+                textInputAction: TextInputAction.done,
+                textInputType: TextInputType.emailAddress,
+              ),
+              BlocListener<SellerSignupBloc, SellerSignupState>(
                 listener: (context, state) {
-                  print("state --> $state");
-                  if (state is SellerLoginLoadedState) {
-                            ToastMessage().toast(
-                                context: context,
-                                message: state.responseModel.message.toString(),
-                                messageColor: Colors.white,
-                                background: Colors.green);
-                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>ManageServicesContainer1Screen()), (route) => false);
-                          } else if (state is SellerLoginErrorState) {
-                            ToastMessage().toast(
-                                duration: 5000,
-                                context: context,
-                                message: state.errorMsg.toString(),
-                                messageColor: Colors.white,
-                                background: Colors.redAccent);
-                          }
-                  
+                  if (state is SellerSignupLoadedState) {
+                    print("state --> ${state.responseModel.message.toString()}");
+                    ToastMessage().toast(
+                        context: context,
+                        message: state.responseModel.message.toString(),
+                        messageColor: Colors.white,
+                        background: Colors.green);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ManageServicesContainer1Screen()),
+                        (route) => false);
+                  } else if (state is SellerSignupErrorState) {
+                    ToastMessage().toast(
+                        duration: 5000,
+                        context: context,
+                        message: state.errorMsg.toString(),
+                        messageColor: Colors.white,
+                        background: Colors.redAccent);
+                  }
                 },
                 child: CustomButton(
                   onTap: () {
-                    // BlocProvider.of<SellerLoginBloc>(context).add(
-                    //     SellerLoginEvents(
-                    //         userName: emailController.text.trim(),
-                    //         password: passwordController.text.trim()));
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context)=>ManageServicesContainer1Screen()));
+                    if (_formKey.currentState!.validate()) {
+                      BlocProvider.of<SellerSignupBloc>(context).add(
+                          SellerSignupEvents(
+                              firstName: firstNameController.text.trim(),
+                              lastName: lastNameController.text.trim(),
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                              zipcode: zipCodeController.text.trim(),
+                              cfpassword: cnfPasswordController.text.trim(),
+                              phone: phoneController.text.trim()));
+                    }
                   },
                   height: getVerticalSize(
                     55,
@@ -220,7 +296,7 @@ class SignUPScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20)            
+              SizedBox(height: 20)
             ],
           ),
         ),
@@ -228,3 +304,6 @@ class SignUPScreen extends StatelessWidget {
     );
   }
 }
+
+
+

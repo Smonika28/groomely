@@ -18,7 +18,9 @@ dependencies:
   shimmer: 
   pdf:
   printing:
-  image_picker: 
+  image_picker: ^0.8.9
+  email_validator: ^2.1.16
+
  
 
 dev_dependencies: 

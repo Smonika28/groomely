@@ -3,6 +3,10 @@
 class Apis {
   static const _baseUrl = 'https://groomely.com';
   static const login = _baseUrl + '/api/v1/users/login';
+
+
+  // static const signup = _baseUrl + '/api/v1/users/signup';
+static const signup=_baseUrl+'/api/v1/users/register';
   static const fetchServiceList = _baseUrl+'/api/v1/sellers/service/list';
   static const appointmentList = _baseUrl+"/api/v1/sellers/appointment/list";
   static const getAllService = _baseUrl+"/api/v1/sellers/service/all-list";

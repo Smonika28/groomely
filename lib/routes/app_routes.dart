@@ -7,6 +7,7 @@ import 'package:groomely_seller/presentation/manage_services_container1_screen/m
 import 'package:groomely_seller/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
 import 'package:groomely_seller/feature/booking/presentation/booking_history_screen.dart';
+import 'groomely_seller/feature/notification/presentation/notification.dart';
 
 
 class AppRoutes {
@@ -33,10 +34,13 @@ class AppRoutes {
 
   static const String userProfileScreen  = '/user_profile_screen';
 
+  static const String notificatonScreen = '/notification_screen';
+
   static Map<String, WidgetBuilder> routes = {
     loginScreen: (context) => LoginScreen(),
     signupScreen: (context) => SignupScreen(),
     dashboardScreen: (context) => DashboardScreen(),
+    notificatonScreen: (context) => NotificatonScreen(),
     manageServicesContainer1Screen: (context) =>
         ManageServicesContainer1Screen(),
     editDetailsScreen: (context) => EditDetailsScreen(),
