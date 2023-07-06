@@ -1,5 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
+
 export "FLUTTER_ROOT=/Users/excellisit/Softwares/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/excellisit/Desktop/grommly/groomely"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"

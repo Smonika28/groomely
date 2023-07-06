@@ -4,7 +4,6 @@ import 'package:groomely_seller/feature/profile/presentation/profile_screen.dart
 import 'package:groomely_seller/presentation/signup_screen/signup_screen.dart';
 import 'package:groomely_seller/feature/dashboard_screen/presentation/dashboard_screen.dart';
 import 'package:groomely_seller/presentation/manage_services_container1_screen/manage_services_container1_screen.dart';
-// import 'package:groomely_seller/presentation/service_details_screen/service_details_screen.dart';
 import 'package:groomely_seller/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
 import 'package:groomely_seller/feature/booking/presentation/booking_history_screen.dart';
@@ -44,11 +43,9 @@ class AppRoutes {
     notificatonScreen: (context) => NotificatonScreen(),
     manageServicesContainer1Screen: (context) =>
         ManageServicesContainer1Screen(),
-    // serviceDetailsScreen: (context) => ServiceDetailsScreen(),
     editDetailsScreen: (context) => EditDetailsScreen(),
     addServiceScreen: (context) => AddServiceScreen(),
     bookingHistoryScreen: (context) => BookingHistoryScreen(),
-    // bookingDetailsScreen: (context) => BookingDetailsScreen(),
     userProfileScreen :(context) => UserProfileScreen()
   };
 }
