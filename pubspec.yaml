@@ -1,23 +1,24 @@
 name: groomely_seller
 description: A new Flutter project.
 version: 1.0.0+1
+publish_to: 'none'
 environment: 
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 dependencies: 
   flutter: 
     sdk: flutter
-  cached_network_image: ^3.2.1
-  flutter_svg: ^1.1.6
-  flutter_switch: ^0.3.2
-  intl: ^0.17.0
-  dio: ^5.1.1
+  cached_network_image: 
+  flutter_svg: 
+  flutter_switch: 
+  intl: 
+  dio: 
   shared_preferences:
   table_calendar:
-  flutter_bloc: ^8.1.2
-  shimmer: ^2.0.0
+  flutter_bloc: 
+  shimmer: 
   pdf:
   printing:
-  image_picker: ^0.8.9
+  image_picker: 
  
 
 dev_dependencies: 
