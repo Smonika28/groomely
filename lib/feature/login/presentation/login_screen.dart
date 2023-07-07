@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   top: 10,
                 ),
                 child: Text(
-                  "forgot Your Password?",
+                  "Forgot Your Password?",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterRegular14OrangeA200,
