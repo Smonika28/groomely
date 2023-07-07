@@ -20,14 +20,28 @@ import '../../../utils/validate/validation_regx.dart';
 import '../bloc/seller_signup_bloc.dart';
 // import '../bloc/login_bloc.dart';
 
-class SignUPScreen extends StatelessWidget {
+class SignUPScreen extends StatefulWidget {
+  @override
+  State<SignUPScreen> createState() => _SignUPScreenState();
+}
+
+class _SignUPScreenState extends State<SignUPScreen> {
+
+  bool isTextObscure = true;
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController cnfPasswordController = TextEditingController();
+
   TextEditingController firstNameController = TextEditingController();
+
   TextEditingController lastNameController = TextEditingController();
+
   TextEditingController phoneController = TextEditingController();
+
   TextEditingController zipCodeController = TextEditingController();
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -76,7 +90,7 @@ class SignUPScreen extends StatelessWidget {
                 controller: firstNameController,
                 hintText: "First Name",
                 validator: (input) =>
-                    customValidation.validateName(input ?? ' '),
+                    customValidation.validateFirstName(input ?? ' '),
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -93,7 +107,7 @@ class SignUPScreen extends StatelessWidget {
                 controller: lastNameController,
                 hintText: "Last Name",
                 validator: (input) =>
-                    customValidation.validateName(input ?? ' '),
+                    customValidation.validateLastName(input ?? ' '),
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -108,10 +122,10 @@ class SignUPScreen extends StatelessWidget {
                 focusNode: FocusNode(),
                 autofocus: true,
                 controller: emailController,
-                hintText: "Email id",
+                hintText: "Please Enter Email id",
                 validator: (input) => EmailValidator.validate(input!)
                     ? null
-                    : "Please valid email id",
+                    : "Please enter valid email id",
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -134,6 +148,7 @@ class SignUPScreen extends StatelessWidget {
                   top: 23,
                   right: 61,
                 ),
+
                 variant: TextFormFieldVariant.OutlineOrangeA200,
                 fontStyle: TextFormFieldFontStyle.InterRegular14,
                 textInputAction: TextInputAction.done,
@@ -141,10 +156,24 @@ class SignUPScreen extends StatelessWidget {
               ),
               CustomTextFormField(
                 focusNode: FocusNode(),
-                isObscureText: true,
                 autofocus: true,
                 controller: passwordController,
+                // obscureText: isTextObscure,
                 hintText: "Password",
+                // suffixIcon: GestureDetector(
+                //   onTap: () {
+                //     setState(() {
+                //       isTextObscure = !isTextObscure;
+                //     });
+                //   },
+                //   child: isTextObscure
+                //       ? const Icon(
+                //     Icons.visibility_off_rounded,
+                //   )
+                //       : const Icon(
+                //     Icons.visibility_rounded,
+                //   ),
+                // ),
                 validator: (input) =>
                     customValidation.validatePassword(input ?? ' '),
                 margin: getMargin(
@@ -242,7 +271,7 @@ class SignUPScreen extends StatelessWidget {
                   height: getVerticalSize(
                     55,
                   ),
-                  text: "LOGIN",
+                  text: "SIGN UP",
                   margin: getMargin(
                     left: 60,
                     top: 40,
@@ -306,4 +335,33 @@ class SignUPScreen extends StatelessWidget {
 }
 
 
+
+//
+//
+// TextFormField(
+// keyboardType: TextInputType.text,
+// controller: _userPasswordController,
+// obscureText: !_passwordVisible,//This will obscure text dynamically
+// decoration: InputDecoration(
+// labelText: 'Password',
+// hintText: 'Enter your password',
+// // Here is key idea
+// suffixIcon: IconButton(
+// icon: Icon(
+// // Based on passwordVisible state choose the icon
+// _passwordVisible
+// ? Icons.visibility
+//     : Icons.visibility_off,
+// color: Theme.of(context).primaryColorDark,
+// ),
+// onPressed: () {
+// // Update the state i.e. toogle the state of passwordVisible variable
+// setState(() {
+// _passwordVisible = !_passwordVisible;
+// });
+// },
+// ),
+// ),
+// );
+//
 

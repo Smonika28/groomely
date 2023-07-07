@@ -1,19 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
-import '../../../routes/groomely_seller/feature/productCrad/presentation/productCard.dart';
-import '../widgets/dashboard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
+import '../../../../../feature/dashboard_screen/widgets/dashboard_item_widget.dart';
+import '../../notification/presentation/notification.dart';
 
-class DashboardScreen extends StatefulWidget {
+class ProductCradScreen extends StatefulWidget {
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<ProductCradScreen> createState() => _ProductCradScreen();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _ProductCradScreen extends State<ProductCradScreen> {
   @override
   void initState() {
     super.initState();
@@ -40,7 +38,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => NotificatonScreen()));
-                  // Navigator.pushNamed(context, AppRoutes.notificatonScreen);
                 },
                 icon: Icon(
                   Icons.notifications,
@@ -72,96 +69,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 return Column(
                   children: [
                     Container(
-                      decoration: AppDecoration.fillGray200,
+                       decoration: AppDecoration.fillGray200,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            width: double.maxFinite,
-                            child: Container(
-                              padding: getPadding(
-                                left: 121,
-                                top: 23,
-                                right: 121,
-                                bottom: 23,
-                              ),
-                              decoration: AppDecoration.fillGray900,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  CustomImageView(
-                                    imagePath: ImageConstant.imgEllipse7,
-                                    height: getSize(
-                                      113,
-                                    ),
-                                    width: getSize(
-                                      113,
-                                    ),
-                                    radius: BorderRadius.circular(
-                                      getHorizontalSize(
-                                        56,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: getPadding(
-                                      top: 12,
-                                    ),
-                                    child: Text(
-                                      "${state.homeViewModel.data?.sellerDetails?.shopName}"
-                                          .toUpperCase(),
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.left,
-                                      style: AppStyle.txtInterBold16,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: getPadding(
-                                      top: 2,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        CustomImageView(
-                                          svgPath: ImageConstant.imgStar,
-                                          height: getVerticalSize(
-                                            17,
-                                          ),
-                                          width: getHorizontalSize(
-                                            18,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: getPadding(
-                                            left: 4,
-                                          ),
-                                          child: Text(
-                                            "4.84 (209.2K) ",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle.txtInterLight14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: getPadding(
-                                      top: 5,
-                                    ),
-                                    child: Text(
-                                      "${state.homeViewModel.data?.sellerDetails?.shopAddress}",
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.left,
-                                      style: AppStyle.txtInterRegular11,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                           Container(
                             width: double.maxFinite,
                             child: Container(
@@ -182,7 +94,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "My Active Services",
@@ -200,35 +112,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                               MainAxisAlignment.center,
                                           children: [
                                             TextButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ProductCradScreen()));
-                                                },
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      "More ",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtRobotoRomanMedium14,
-                                                    ),
-                                                    Icon(
-                                                      Icons
-                                                          .arrow_forward_ios_rounded,
-                                                      size: 8,
-                                                      color: Color(0xFFD5A353),
-                                                    ),
-                                                  ],
-                                                )),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ProductCradScreen()));
+                                              },
+                                              child: Text(
+                                                "more",
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.left,
+                                                style: AppStyle
+                                                    .txtRobotoRomanMedium14,
+                                              ),
+                                            ),
+
+                                            CustomImageView(
+                                              svgPath: ImageConstant.imgVector,
+                                              height: getVerticalSize(
+                                                6,
+                                              ),
+                                              width: getHorizontalSize(
+                                                3,
+                                              ),
+                                              margin: getMargin(
+                                                left: 8,
+                                                top: 6,
+                                                bottom: 4,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -516,7 +429,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "Today’s Bookings",
@@ -532,34 +445,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ProductCradScreen()));
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "More ",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtRobotoRomanMedium14,
-                                              ),
-                                              Icon(
-                                                Icons.arrow_forward_ios_rounded,
-                                                size: 8,
-                                                color: Color(0xFFD5A353),
-                                              ),
-                                            ],
-                                          )),
+                                      Text(
+                                        "more",
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle.txtRobotoRomanMedium14,
+                                      ),
+                                      CustomImageView(
+                                        svgPath: ImageConstant.imgVector,
+                                        height: getVerticalSize(
+                                          6,
+                                        ),
+                                        width: getHorizontalSize(
+                                          3,
+                                        ),
+                                        margin: getMargin(
+                                          left: 8,
+                                          top: 6,
+                                          bottom: 4,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

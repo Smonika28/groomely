@@ -26,11 +26,20 @@ class customValidation {
     return null;
   }
 
-  static String? validateName(String value) {
+  static String? validateFirstName(String value) {
     if (value.isEmpty) {
       return 'Name is required';
     } else if (value.length < 3) {
-      return 'Name must be at least 3 characters';
+      return 'Please Enter First Name';
+    }
+    return null;
+  }
+
+  static String? validateLastName(String value) {
+    if (value.isEmpty) {
+      return 'Name is required';
+    } else if (value.length < 3) {
+      return 'Please Enter Last Name';
     }
     return null;
   }

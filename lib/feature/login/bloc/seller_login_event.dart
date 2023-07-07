@@ -11,6 +11,7 @@ class SellerLoginEvents extends SellerLoginEvent{
   String userName;
   String password;
 
+
   SellerLoginEvents({required this.userName, required this.password,
  });
 }

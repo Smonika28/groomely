@@ -22,7 +22,8 @@ class _ManageServicesContainerPageState
     super.initState();
     BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent());
   }
-
+  bool _isCheckedPending= false;
+  bool _isCheckedPending1= false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -106,14 +107,34 @@ class _ManageServicesContainerPageState
                               Row(
                                 children: [
                                   Checkbox.adaptive(
-                                      value: true, onChanged: (v) {}),
+                                      value:
+                                      _isCheckedPending,
+                                      onChanged:
+                                          (value) {
+                                        setState(
+                                                () {
+                                              _isCheckedPending =
+                                              value!;
+                                            });
+                                      },
+                                  ),
                                   Text("Active"),
                                 ],
                               ),
                               Row(
                                 children: [
                                   Checkbox.adaptive(
-                                      value: true, onChanged: (v) {}),
+                                value:
+                                _isCheckedPending1,
+                                onChanged:
+                                    (value) {
+                                  setState(
+                                          () {
+                                        _isCheckedPending1 =
+                                        value!;
+                                      });
+                                },
+                              ),
                                   Text("Inactive"),
                                 ],
                               )
