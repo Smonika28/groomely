@@ -9,6 +9,7 @@ class LocalStorageService {
   static  String USER_NAME = 'userName';
   static String USER_PASS = 'userPass';
   static  String SELECTED_BRANCH_ID = 'sbid';
+  static String RETURNING_USER = "returningUser";
 
 
 /* get stored value */

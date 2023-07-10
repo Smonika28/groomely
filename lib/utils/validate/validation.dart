@@ -28,7 +28,7 @@ class customValidation {
 
   static String? validateFirstName(String value) {
     if (value.isEmpty) {
-      return 'Name is required';
+      return 'First Name is required';
     } else if (value.length < 3) {
       return 'Please Enter First Name';
     }
@@ -37,7 +37,7 @@ class customValidation {
 
   static String? validateLastName(String value) {
     if (value.isEmpty) {
-      return 'Name is required';
+      return 'Last Name is required';
     } else if (value.length < 3) {
       return 'Please Enter Last Name';
     }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/feature/login/presentation/login_screen.dart';
+import 'package:groomely_seller/feature/onboarding/presentation/splash_screen/splash_screen.dart';
+import 'package:groomely_seller/feature/onboarding/presentation/welcome_screen/welcome_screen.dart';
 import 'package:groomely_seller/feature/profile/presentation/profile_screen.dart';
 import 'package:groomely_seller/presentation/signup_screen/signup_screen.dart';
 import 'package:groomely_seller/feature/dashboard_screen/presentation/dashboard_screen.dart';
@@ -8,10 +10,13 @@ import 'package:groomely_seller/presentation/manage_services_container1_screen/m
 import 'package:groomely_seller/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
 import 'package:groomely_seller/feature/booking/presentation/booking_history_screen.dart';
-import 'groomely_seller/feature/notification/presentation/notification.dart';
+import '../feature/notification/presentation/notification.dart';
+
 
 
 class AppRoutes {
+  static const String splashScreen = '/splash_screen';
+  static const String welcomeScreen = '/welcome_screen';
   static const String loginScreen = '/login_screen';
   static const String signupScreen = '/signup_screen';
   static const String dashboardScreen = '/dashboard_screen';
@@ -38,6 +43,8 @@ class AppRoutes {
   static const String notificatonScreen = '/notification_screen';
 
   static Map<String, WidgetBuilder> routes = {
+    splashScreen: (context) => SplashScreen(),
+    welcomeScreen: (context) => WelcomeScreen(),
     loginScreen: (context) => LoginScreen(),
     signupScreen: (context) => SignupScreen(),
     dashboardScreen: (context) => DashboardScreen(),

@@ -280,7 +280,7 @@ class _ListservicenameItemWidgetState extends State<ListservicenameItemWidget> {
                         flex: 51,
                       ),
                       FlutterSwitch(
-                        value: isSelectedSwitch,
+                        value: widget.serviceData.status==1?true:false,
                         height: getHorizontalSize(24),
                         width: getHorizontalSize(63),
                         toggleSize: 19,
@@ -292,9 +292,11 @@ class _ListservicenameItemWidgetState extends State<ListservicenameItemWidget> {
                         inactiveColor: ColorConstant.gray500,
                         inactiveToggleColor: ColorConstant.whiteA700,
                         onToggle: (value) {
-                        ApiCallingClass().toggleService(serviceID:widget.serviceData.service!.id.toString(),Status: value).then((v) =>{
+                          print("${widget.serviceData.service!.id.toString()}");
+                        ApiCallingClass().toggleService(serviceID:widget.serviceData.service!.id.toString(),status:value?1:0).then((v) =>{
                           setState(() {
-                           isSelectedSwitch = value;
+                            widget.serviceData.status = value?1:0;
+                           // isSelectedSwitch = value;
                         })
                         });
                         },

@@ -43,7 +43,7 @@ class Data {
   int? serviceId;
   int? offerId;
   String? rate;
-  int? status;
+  int status = 0;
   Service? service;
   Offer? offer;
 
@@ -53,7 +53,7 @@ class Data {
       this.serviceId,
       this.offerId,
       this.rate,
-      this.status,
+      this.status = 0,
       this.service,
       this.offer});
 

@@ -5,6 +5,7 @@ abstract class ManageServiceEvent {}
 
 
 class FetchServiceListEvent extends ManageServiceEvent{
-  
+    int? statusId;
+    FetchServiceListEvent({required this.statusId});
 }
 

@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
-import '../../../routes/groomely_seller/feature/productCrad/presentation/productCard.dart';
+import '../../notification/presentation/notification.dart';
+import '../../productCrad/presentation/productCard.dart';
 import '../widgets/dashboard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';

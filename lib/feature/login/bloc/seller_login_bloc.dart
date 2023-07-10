@@ -14,6 +14,7 @@ class SellerLoginBloc extends Bloc<SellerLoginEvent, SellerLoginState> {
       Map<String, dynamic> requestModel = {
         "email": event.userName,
         "password": event.password,
+        "user_type":"BUSINESS_OWNER"
       };
       try {
         emit(SellerLoginLodingState());

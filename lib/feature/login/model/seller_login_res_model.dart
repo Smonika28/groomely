@@ -57,6 +57,7 @@ class User {
   String? profilePicture;
   String? shopAddress;
   String? shopName;
+  String? userType;
 
   User(
       {this.id,
@@ -68,7 +69,8 @@ class User {
       this.status,
       this.profilePicture,
       this.shopAddress,
-      this.shopName});
+      this.shopName,
+      this.userType});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -81,6 +83,7 @@ class User {
     profilePicture = json['profile_picture'];
     shopAddress = json['shop_address'];
     shopName = json['shop_name'];
+    userType = json['user_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -95,6 +98,7 @@ class User {
     data['profile_picture'] = this.profilePicture;
     data['shop_address'] = this.shopAddress;
     data['shop_name'] = this.shopName;
+    data['user_type'] = this.userType;
     return data;
   }
 }

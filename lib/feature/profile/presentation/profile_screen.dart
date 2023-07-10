@@ -4,13 +4,12 @@ import 'package:shimmer/shimmer.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../routes/app_routes.dart';
-import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
 import '../../../theme/app_decoration.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/image_constant.dart';
 import '../../../utils/size_utils.dart';
 import '../../../widgets/custom_image_view.dart';
+import '../../notification/presentation/notification.dart';
 import '../bloc/user_profile_bloc.dart';
 
 class UserProfileScreen extends StatefulWidget {

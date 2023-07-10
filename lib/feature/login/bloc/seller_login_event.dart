@@ -10,8 +10,10 @@ abstract class SellerLoginEvent {}
 class SellerLoginEvents extends SellerLoginEvent{
   String userName;
   String password;
+  String user_type;
 
 
   SellerLoginEvents({required this.userName, required this.password,
+    required this.user_type,
  });
 }

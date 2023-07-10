@@ -25,13 +25,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscured = false;
   bool isTextObscure = true;
 
-  void _toggleObscured() {
-    setState(() {
-      _obscured = !_obscured;
-      if (textFieldFocusNode.hasPrimaryFocus) return; // If focus is on text field, dont unfocus
-      textFieldFocusNode.canRequestFocus = false;     // Prevents focus if tap on eye
-    });
-  }
+  // void _toggleObscured() {
+  //   setState(() {
+  //     _obscured = !_obscured;
+  //     if (textFieldFocusNode.hasPrimaryFocus) return; // If focus is on text field, dont unfocus
+  //     textFieldFocusNode.canRequestFocus = false;     // Prevents focus if tap on eye
+  //   });
+  // }
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String radioGroup = "";
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocProvider.of<SellerLoginBloc>(context).add(
                         SellerLoginEvents(
                             userName: emailController.text.trim(),
-                            password: passwordController.text.trim()));
+                            password: passwordController.text.trim(), user_type: 'seller'));
                   },
                   height: getVerticalSize(
                     55,

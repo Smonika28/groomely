@@ -12,11 +12,11 @@ class ApiCallingClass {
   LocalStorageService localStorageService = LocalStorageService();
 
   Future<bool> toggleService(
-      {required String serviceID, required bool Status}) async {
+      {required String serviceID, required int status}) async {
     String token = await localStorageService
             .getFromDisk(LocalStorageService.ACCESS_TOKEN_KEY) ??
         "";
-    Map<String, dynamic> body = {"service_id": serviceID, "status": 1};
+    Map<String, dynamic> body = {"service_id": serviceID, "status": status };
     final response = await _dio.post(Apis.toggleService,
         data: body,
         options: Options(headers: {

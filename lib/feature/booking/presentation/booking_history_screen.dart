@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
 import 'package:groomely_seller/feature/booking/widgets/booking_details_screen.dart';
-import 'package:groomely_seller/widgets/table_calander.dart';
-import '../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
+import '../../notification/presentation/notification.dart';
 import '../widgets/booking_history_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';

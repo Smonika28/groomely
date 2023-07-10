@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
-import '../../../../routes/groomely_seller/feature/notification/presentation/notification.dart';
 import '../../../../widgets/listservicename_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
 import 'package:groomely_seller/widgets/custom_floating_button.dart';
+import '../../../notification/presentation/notification.dart';
 
 // ignore_for_file: must_be_immutable
 class ManageServicesContainerPage extends StatefulWidget {
@@ -20,10 +20,11 @@ class _ManageServicesContainerPageState
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent());
+    BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: null));
   }
-  bool _isCheckedPending= false;
-  bool _isCheckedPending1= false;
+
+  bool _checkbox = false;
+  bool _checkboxListTile = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -107,16 +108,15 @@ class _ManageServicesContainerPageState
                               Row(
                                 children: [
                                   Checkbox.adaptive(
-                                      value:
-                                      _isCheckedPending,
-                                      onChanged:
-                                          (value) {
-                                        setState(
-                                                () {
-                                              _isCheckedPending =
-                                              value!;
-                                            });
-                                      },
+                                    value: _checkbox,
+                                    onChanged: (value) {
+                                      print("jhdfhghfug");
+                                      BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: 1));
+                                      setState(() {
+                                         _checkbox = !_checkbox;
+
+                                      });
+                                    },
                                   ),
                                   Text("Active"),
                                 ],
@@ -124,17 +124,15 @@ class _ManageServicesContainerPageState
                               Row(
                                 children: [
                                   Checkbox.adaptive(
-                                value:
-                                _isCheckedPending1,
-                                onChanged:
-                                    (value) {
-                                  setState(
-                                          () {
-                                        _isCheckedPending1 =
-                                        value!;
+                                    value: _checkboxListTile,
+                                    onChanged: (value) {
+                                      print("hheeeeellllllloooooo");
+                                      BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: 0));
+                                      setState(() {
+                                        _checkboxListTile = !_checkboxListTile;
                                       });
-                                },
-                              ),
+                                    },
+                                  ),
                                   Text("Inactive"),
                                 ],
                               )
