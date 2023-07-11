@@ -18,10 +18,10 @@ class SellerLoginBloc extends Bloc<SellerLoginEvent, SellerLoginState> {
       };
       try {
         emit(SellerLoginLodingState());
-        print(requestModel);
+        // print(requestModel);
         final myList = await repository.getLogin(requestModel);
-        print('myListdata--> $myList');
-        print("statusss-->  ${myList.status}");
+        // print('myListdata--> $myList');
+        // print("statusss-->  ${myList.status}");
         if (myList.status == true) {
           LocalStorageService()
               .saveToDisk(LocalStorageService.ACCESS_TOKEN_KEY, myList.data.authToken);

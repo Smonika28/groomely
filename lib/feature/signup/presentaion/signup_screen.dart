@@ -1,4 +1,3 @@
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +25,9 @@ class SignUPScreen extends StatefulWidget {
 }
 
 class _SignUPScreenState extends State<SignUPScreen> {
+  bool isTextObscurePassword = true;
+  bool isTextObscureConfrmPassword = true;
 
-  bool isTextObscure = true;
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
@@ -148,7 +148,6 @@ class _SignUPScreenState extends State<SignUPScreen> {
                   top: 23,
                   right: 61,
                 ),
-
                 variant: TextFormFieldVariant.OutlineOrangeA200,
                 fontStyle: TextFormFieldFontStyle.InterRegular14,
                 textInputAction: TextInputAction.done,
@@ -156,24 +155,25 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               CustomTextFormField(
                 focusNode: FocusNode(),
+                isObscureText: isTextObscurePassword,
                 autofocus: true,
                 controller: passwordController,
-                // obscureText: isTextObscure,
                 hintText: "Password",
-                // suffixIcon: GestureDetector(
-                //   onTap: () {
-                //     setState(() {
-                //       isTextObscure = !isTextObscure;
-                //     });
-                //   },
-                //   child: isTextObscure
-                //       ? const Icon(
-                //     Icons.visibility_off_rounded,
-                //   )
-                //       : const Icon(
-                //     Icons.visibility_rounded,
-                //   ),
-                // ),
+                suffix: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isTextObscurePassword = !isTextObscurePassword;
+                    });
+                  },
+                  child: isTextObscurePassword
+                      ? const Icon(
+                          Icons.visibility_off_rounded,
+                        )
+                      : const Icon(
+                          Icons.visibility_rounded,
+                        ),
+                ),
+
                 validator: (input) =>
                     customValidation.validatePassword(input ?? ' '),
                 margin: getMargin(
@@ -188,10 +188,25 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               CustomTextFormField(
                 focusNode: FocusNode(),
-                isObscureText: true,
+                isObscureText: isTextObscureConfrmPassword,
                 autofocus: true,
                 controller: cnfPasswordController,
                 hintText: "Confirm Password",
+                suffix: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isTextObscureConfrmPassword =
+                          !isTextObscureConfrmPassword;
+                    });
+                  },
+                  child: isTextObscureConfrmPassword
+                      ? const Icon(
+                          Icons.visibility_off_rounded,
+                        )
+                      : const Icon(
+                          Icons.visibility_rounded,
+                        ),
+                ),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please re-enter password';
@@ -233,8 +248,9 @@ class _SignUPScreenState extends State<SignUPScreen> {
               BlocListener<SellerSignupBloc, SellerSignupState>(
                 listener: (context, state) {
                   if (state is SellerSignupLoadedState) {
-                    print("state --> ${state.responseModel.message.toString()}");
-                    ToastMessage().toast(
+                    print(
+                        "state --> ${state.responseModel.message.toString()}");
+                    ToastMessage.toast(
                         context: context,
                         message: state.responseModel.message.toString(),
                         messageColor: Colors.white,
@@ -246,7 +262,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
                                 ManageServicesContainer1Screen()),
                         (route) => false);
                   } else if (state is SellerSignupErrorState) {
-                    ToastMessage().toast(
+                    ToastMessage.toast(
                         duration: 5000,
                         context: context,
                         message: state.errorMsg.toString(),
@@ -333,35 +349,3 @@ class _SignUPScreenState extends State<SignUPScreen> {
     );
   }
 }
-
-
-
-//
-//
-// TextFormField(
-// keyboardType: TextInputType.text,
-// controller: _userPasswordController,
-// obscureText: !_passwordVisible,//This will obscure text dynamically
-// decoration: InputDecoration(
-// labelText: 'Password',
-// hintText: 'Enter your password',
-// // Here is key idea
-// suffixIcon: IconButton(
-// icon: Icon(
-// // Based on passwordVisible state choose the icon
-// _passwordVisible
-// ? Icons.visibility
-//     : Icons.visibility_off,
-// color: Theme.of(context).primaryColorDark,
-// ),
-// onPressed: () {
-// // Update the state i.e. toogle the state of passwordVisible variable
-// setState(() {
-// _passwordVisible = !_passwordVisible;
-// });
-// },
-// ),
-// ),
-// );
-//
-

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ToastMessage {
-  void toast(
+  ToastMessage(String err);
+
+ static void toast(
       {required BuildContext context,
         required String message,
         required Color messageColor,

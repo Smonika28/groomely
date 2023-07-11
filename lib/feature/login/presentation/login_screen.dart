@@ -10,6 +10,7 @@ import '../../../utils/size_utils.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_image_view.dart';
 import '../../../widgets/custom_text_form_field.dart';
+import '../../forgetPassword/presentation/forgetPassword.dart';
 import '../../signup/presentaion/signup_screen.dart';
 import '../bloc/seller_login_bloc.dart';
 
@@ -22,16 +23,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final textFieldFocusNode = FocusNode();
-  bool _obscured = false;
   bool isTextObscure = true;
-
-  // void _toggleObscured() {
-  //   setState(() {
-  //     _obscured = !_obscured;
-  //     if (textFieldFocusNode.hasPrimaryFocus) return; // If focus is on text field, dont unfocus
-  //     textFieldFocusNode.canRequestFocus = false;     // Prevents focus if tap on eye
-  //   });
-  // }
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String radioGroup = "";
@@ -70,8 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Text(
-                 "Make Your Next Grooming Appointment.",
-                //  "Find Your Barber to Get Better Looks",
+                "Make Your Next Grooming Appointment.",
                 maxLines: null,
                 textAlign: TextAlign.center,
                 style: AppStyle.txtInterMedium24,
@@ -91,36 +82,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-
               CustomTextFormField(
                 focusNode: FocusNode(),
-                isObscureText: true,
+                isObscureText: isTextObscure,
                 autofocus: true,
                 controller: passwordController,
-                 // obscureText: isTextObscure,
                 hintText: "password",
-
-                // suffixIcon: GestureDetector(
-                //   onTap: () {
-                //     setState(() {
-                //       isTextObscure = !isTextObscure;
-                //     });
-                //   },
-                //   child: isTextObscure
-                //       ? const Icon(
-                //     Icons.visibility_off_rounded,
-                //   )
-                //       : const Icon(
-                //     Icons.visibility_rounded,
-                //   ),
-                // ),
-                // suffixIcon: GestureDetector(  // Add suffix icon
-                //   onTap: _toggleObscured,
-                //   child: Icon(
-                //     _obscured ? Icons.visibility : Icons.visibility_off,
-                //     color: Colors.black,
-                //   ),
-                // ),
+                suffix: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isTextObscure = !isTextObscure;
+                    });
+                  },
+                  child: isTextObscure
+                      ? const Icon(
+                          Icons.visibility_off_rounded,
+                        )
+                      : const Icon(
+                          Icons.visibility_rounded,
+                        ),
+                ),
                 margin: getMargin(
                   left: 60,
                   top: 23,
@@ -135,18 +116,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: getPadding(
                   top: 10,
                 ),
-                child: Text(
-                  "Forgot Your Password?",
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: AppStyle.txtInterRegular14OrangeA200,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordScreen()));
+                  },
+                  child: Text(
+                    "Forgot Your Password?",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    style: AppStyle.txtInterRegular14OrangeA200,
+                  ),
                 ),
               ),
               BlocListener<SellerLoginBloc, SellerLoginState>(
                 listener: (context, state) {
-                  print("state --> $state");
+                  // print("state --> $state");
                   if (state is SellerLoginLoadedState) {
-                    ToastMessage().toast(
+                    ToastMessage.toast(
                         context: context,
                         message: state.responseModel.message.toString(),
                         messageColor: Colors.white,
@@ -158,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ManageServicesContainer1Screen()),
                         (route) => false);
                   } else if (state is SellerLoginErrorState) {
-                    ToastMessage().toast(
+                    ToastMessage.toast(
                         duration: 5000,
                         context: context,
                         message: state.errorMsg.toString(),
@@ -171,7 +160,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocProvider.of<SellerLoginBloc>(context).add(
                         SellerLoginEvents(
                             userName: emailController.text.trim(),
-                            password: passwordController.text.trim(), user_type: 'seller'));
+                            password: passwordController.text.trim(),
+                            user_type: 'seller'));
                   },
                   height: getVerticalSize(
                     55,
@@ -237,6 +227,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-
-

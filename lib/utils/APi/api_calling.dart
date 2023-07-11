@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:groomely_seller/core/api/api_string.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/model/details_service_model.dart';
-import 'package:groomely_seller/utils/APi/api_provider.dart';
 import 'package:groomely_seller/utils/storage/local_storage.dart';
 
 class ApiCallingClass {

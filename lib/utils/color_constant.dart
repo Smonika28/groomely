@@ -44,6 +44,14 @@ class ColorConstant {
 
   static Color whiteA700 = fromHex('#ffffff');
 
+  static Color colorScaffold = Colors.white;
+  static Color colorGoldenYellow = Color(0XFFAD6D07);
+  static Color colorLightGoldenYellow = Color(0XFFFFE7C1);
+  static Color colorPrimaryBlack = Color(0XFF1E1E1E);
+  static Color colorLightRed = Colors.redAccent;
+
+  static Color calendarBackgroundColor = Color(0XFFFDF2DF);
+
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');

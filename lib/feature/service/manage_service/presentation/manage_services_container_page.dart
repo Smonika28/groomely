@@ -110,7 +110,7 @@ class _ManageServicesContainerPageState
                                   Checkbox.adaptive(
                                     value: _checkbox,
                                     onChanged: (value) {
-                                      print("jhdfhghfug");
+                                      print("heello");
                                       BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: 1));
                                       setState(() {
                                          _checkbox = !_checkbox;
