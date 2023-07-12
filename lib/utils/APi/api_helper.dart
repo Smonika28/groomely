@@ -173,7 +173,7 @@ mixin ApiHelper {
       };
     } on DioError catch (e) {
       if (kDebugMode) {
-        log(e.toString());
+        log("cach error"+e.toString());
       }
       if (DioErrorType.badResponse == e.type) {
         if (kDebugMode) {
@@ -209,7 +209,18 @@ mixin ApiHelper {
             "body": e.response!.data,
             "errorMsg": e.response!.statusMessage.toString()
           };
-        } else if (e.response!.statusCode == 500) {
+        }
+        else if (e.response!.statusCode == 401) {
+          if (kDebugMode) {
+            print("400 error- ${e.response!.statusCode}");
+          }
+          return {
+            "statusCode": 401,
+            "body": e.response!.data,
+            "errorMsg": e.response!.statusCode.toString()
+          };
+        }
+        else if (e.response!.statusCode == 500) {
           return {
             "statusCode": 500,
             "body": e.response!.data,

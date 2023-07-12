@@ -193,6 +193,16 @@ class ApiProvider with ApiHelper{
             return respModel.insertToError(resp['body']["errorMsg"].toString());
           }
         }
+        else if (resp["statusCode"] == 401) {
+          if (kDebugMode) {
+            log("Exception Occurred: ${resp["errorMsg"]}");
+          }
+          if (resp['body'] != null) {
+            return respModel.insertToError(resp["body"]["message"].toString());
+          } else {
+            return respModel.insertToError(resp['body']["errorMsg"].toString());
+          }
+        }
         else if(resp["statusCode"] == 49004){
           if(kDebugMode){
             log("Exception Occurred: ${resp["errorMsg"]}");

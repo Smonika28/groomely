@@ -8,6 +8,7 @@ class Apis {
   static const fetchServiceList = _baseUrl + '/api/v1/sellers/service/list';
   static const appointmentList = _baseUrl + "/api/v1/sellers/appointment/list";
   static const getAllService = _baseUrl + "/api/v1/sellers/service/all-list";
+  static const addServiceApi = _baseUrl + "/api/v1/sellers/service/create";
   static const serviceDetailById =
       _baseUrl + "/api/v1/sellers/service/details-by-id";
   static const homePage = _baseUrl + "/api/v1/sellers/home/view";
