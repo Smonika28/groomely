@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:groomely_seller/widgets/custom_button.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
@@ -8,8 +9,11 @@ import '../../../theme/app_decoration.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/image_constant.dart';
 import '../../../utils/size_utils.dart';
+import '../../../utils/storage/local_storage.dart';
 import '../../../widgets/custom_image_view.dart';
+import '../../login/presentation/login_screen.dart';
 import '../../notification/presentation/notification.dart';
+import '../../signup/presentaion/signup_screen.dart';
 import '../bloc/user_profile_bloc.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -51,7 +55,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificatonScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NotificatonScreen()));
               },
               icon: Icon(
                 Icons.notifications,
@@ -235,30 +242,59 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               contentField(
                                   title: "shop owner name",
                                   subTitle:
-                                  "${state.profileModel.data?.details?.name}"),
+                                      "${state.profileModel.data?.details?.name}"),
                               contentField(
                                   title: "shop name",
                                   subTitle:
-                                  "${state.profileModel.data?.details?.shopName}"),
+                                      "${state.profileModel.data?.details?.shopName}"),
                               contentField(
                                   title: "shop address",
                                   subTitle:
-                                  "${state.profileModel.data?.details?.shopAddress}"),
+                                      "${state.profileModel.data?.details?.shopAddress}"),
                               contentField(
                                   title: "Email",
                                   subTitle:
-                                  "${state.profileModel.data?.details?.email}"),
+                                      "${state.profileModel.data?.details?.email}"),
                               contentField(
                                   title: "Phone number",
                                   subTitle:
-                                  "${state.profileModel.data?.details?.name}"),
+                                      "${state.profileModel.data?.details?.name}"),
                               contentField(
                                   title: "password",
                                   subTitle: "********************"),
                             ]))),
+                SizedBox(
+                  height: 10,
+                ),
+                CustomButton(
+                  // onTap: (){},
+                  onTap: () {
+                    LocalStorageService()
+                        .removeToDisk(LocalStorageService.ACCESS_TOKEN_KEY);
+                    Navigator.of(context).pop();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
+                  },
+                  height: getVerticalSize(
+                    55,
+                  ),
+                  text: "LOGOUT",
+                  margin: getMargin(
+                    left: 60,
+                    top: 0,
+                    right: 61,
+                  ),
+                ),
+                // const Padding(
+                //   padding: EdgeInsets.only(bottom: 30, left: 30),
+                //   child: Text("© 2023 Groomely"),
+                // ),
               ],
             );
           }
+
           return Container();
         },
       ),
