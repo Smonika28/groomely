@@ -1,18 +1,22 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../core/api/api_string.dart';
+import '../../../../presentation/manage_services_container1_screen/manage_services_container1_screen.dart';
 import '../../../../theme/app_decoration.dart';
 import '../../../../theme/app_style.dart';
 import '../../../../utils/Toast/app_toast.dart';
 import '../../../../utils/color_constant.dart';
 import '../../../../utils/size_utils.dart';
+import '../../../../widgets/custom_appbar.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_dropdown.dart';
 import '../../../../widgets/custom_text_form_field.dart';
+import '../../../signup/bloc/seller_signup_bloc.dart';
 import '../../manage_service/presentation/manage_services_container_page.dart';
 import '../bloc/fetch_all_service_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -32,17 +36,43 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
   TextEditingController durationController = TextEditingController();
   TextEditingController desController = TextEditingController();
   TextEditingController offerController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     BlocProvider.of<FetchAllServiceBloc>(context).add(FetchAllServiceEvents());
   }
 
+  // void onCustomButtonPressed() async {
+  //   try {
+  //     http.Response response = await http.post(
+  //       Uri.parse('https://groomely.com/api/v1/sellers/service/create'),
+  //       headers: <String, String>{
+  //         // 'Authorization': 'Bearer $token',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       var responseData = jsonDecode(response.body);
+  //       print(responseData);
+  //     } else {
+  //       print('API request failed with status code: ${response.statusCode}');
+  //     }
+  //   } catch (error) {
+  //     print('Error occurred during API request: $error');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
+        // appBar: PreferredSize(
+        //     preferredSize: const Size.fromHeight(50),
+        //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
         appBar: AppBar(
           elevation: 0,
           leading: GestureDetector(
@@ -55,14 +85,14 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
           centerTitle: true,
           title: Text("Add Service",
               style: TextStyle(fontSize: 20, color: Colors.black)),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                ))
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {},
+          //       icon: Icon(
+          //         Icons.notifications,
+          //         color: Colors.black,
+          //       ))
+          // ],
         ),
         body: SizedBox(
           width: size.width,
@@ -132,7 +162,19 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                             );
                           },
                         ),
-                        BlocBuilder<FetchAllFieldBloc, FetchAllFieldState>(
+                        BlocConsumer<FetchAllFieldBloc, FetchAllFieldState>(
+                          listener: (context, state) {
+                            if (state is addServiceState) {
+                              ToastMessage.toast(
+                                  context: context,
+                                  message: state.message.toString(),
+                                  messageColor: Colors.white,
+                                  background: Colors.green);
+
+                              Future.delayed(const Duration(milliseconds: 1500),
+                                  () => Navigator.pop(context));
+                            }
+                          },
                           builder: (context, state) {
                             print("fiedstate $state");
                             if (state is FetchAllServiceFieldLoading) {
@@ -158,6 +200,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
+                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.category!.name!}",
                                   ),
@@ -183,23 +226,10 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
+                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.serviceType!.name!}",
                                   ),
-                                  // Container(
-                                  //     height: getVerticalSize(55),
-                                  //     width: getHorizontalSize(356),
-                                  //     margin: getMargin(top: 5),
-                                  //     child: Text(state.detailServiceModel.data!.serviceType!.name!),
-                                  //     decoration: BoxDecoration(
-                                  //
-                                  //         borderRadius:
-                                  //             BorderRadius.circular(
-                                  //                 getHorizontalSize(27)),
-                                  //         border: Border.all(
-                                  //             color: ColorConstant.gray700,
-                                  //             width:
-                                  //                 getHorizontalSize(1)))),
 
                                   Padding(
                                       padding: getPadding(
@@ -209,6 +239,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
+                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.duration!}",
                                   ),
@@ -220,27 +251,11 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
+                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.description!}",
                                   ),
-                                  // Container(
-                                  //     height: getVerticalSize(147),
-                                  //     width: getHorizontalSize(356),
-                                  //     margin: getMargin(top: 5),
-                                  //
-                                  //       child: Text("${state.detailServiceModel.data!.description!}",
-                                  //
-                                  //       ),
-                                  //     // child: Text(state.detailServiceModel.data!.description!),
-                                  //
-                                  //     decoration: BoxDecoration(
-                                  //         borderRadius:
-                                  //             BorderRadius.circular(
-                                  //                 getHorizontalSize(6)),
-                                  //         border: Border.all(
-                                  //             color: ColorConstant.gray700,
-                                  //             width:
-                                  //                 getHorizontalSize(1)))),
+
                                   Padding(
                                     padding: getPadding(top: 8, right: 32),
                                     child: Row(
@@ -264,6 +279,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                                       style: AppStyle
                                                           .txtInterRegular14)),
                                               CustomTextFormField(
+                                                readOnly: true,
                                                 hintText:
                                                     "${state.detailServiceModel.data!.offer!.offerAmount}",
                                               )
@@ -282,68 +298,61 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       ],
                                     ),
                                   ),
-                                  // Padding(
-                                  //     padding: getPadding(
-                                  //         left: 23, top: 8, bottom: 5),
-                                  //     child: Text("Amount",
-                                  //         overflow: TextOverflow.ellipsis,
-                                  //         textAlign: TextAlign.left,
-                                  //         style: AppStyle.txtInterRegular14)),
-                                  // CustomTextFormField(
-                                  //   hintText:
-                                  //   "${state.detailServiceModel.data!.rate!}",
-                                  // ),
-                                  // <BlocProvider>[
-                                  //   BlocProvider<AddServiceBloc>(
-                                  //     create: (context) => AddServiceBloc(
-                                  //         addServiceRepository:
-                                  //             AddServiceRepository()),
-                                  //   ),
-                                  // ],
+                                  BlocListener<FetchAllFieldBloc,
+                                      FetchAllFieldState>(
+                                    listener: (context, state) {},
+                                    child: CustomButton(
+                                      onTap: () {
+                                        BlocProvider.of<FetchAllFieldBloc>(
+                                                context)
+                                            .add(
+                                                AddServiceEvent(
+                                                    serviceID: state
+                                                        .detailServiceModel
+                                                        .data!
+                                                        .id!,
+                                                    offerId: state
+                                                        .detailServiceModel
+                                                        .data!
+                                                        .offerId
+                                                        .toString(),
+                                                    offerPrice: int.parse(state
+                                                        .detailServiceModel
+                                                        .data!
+                                                        .offer!
+                                                        .offerAmount!)));
+                                      },
+                                      height: getVerticalSize(
+                                        55,
+                                      ),
+                                      text: "Add Service",
+                                      margin: getMargin(
+                                        left: 60,
+                                        top: 40,
+                                        right: 61,
+                                      ),
+                                    ),
+                                  ),
 
                                   // CustomButton(
+                                  //
                                   //     height: getVerticalSize(55),
                                   //     text: "ADD SERVICE",
+                                  //
+                                  //     onTap:(){
+                                  //       print("add Service btn");
+                                  //
+                                  //     },
+                                  //     // onTap: () {
+                                  //     //   Navigator.push(
+                                  //     //       context,
+                                  //     //       MaterialPageRoute(
+                                  //     //           builder: (context) =>
+                                  //     //               ManageServicesContainerPage()));
+                                  //     // },
                                   //     margin: getMargin(
                                   //         left: 31, top: 30, right: 32),
                                   //     alignment: Alignment.center),
-                                  // <BlocProvider>[
-                                  //   BlocProvider<AddServiceBloc>(
-                                  //     create: (context) => AddServiceBloc(
-                                  //         addServiceRepository:
-                                  //             AddServiceRepository()),
-                                  //   ),
-                                  // ],
-
-                                  CustomButton(
-                                      height: getVerticalSize(55),
-                                      text: "ADD SERVICE",
-                                      onTap: () {
-                                        print("heeeeloooo");
-                                        // addService(
-                                        //   context,
-                                        //   state.detailServiceModel.data!
-                                        //       .category!.name!,
-                                        //   state.detailServiceModel.data!
-                                        //       .serviceType!.name!,
-                                        //   state.detailServiceModel.data!
-                                        //       .duration!,
-                                        //   state.detailServiceModel.data!.offer!
-                                        //       .offerAmount,
-                                        //   state.detailServiceModel.data!
-                                        //       .description!,
-                                        // );
-                                      },
-                                      // onTap: () {
-                                      //   Navigator.push(
-                                      //       context,
-                                      //       MaterialPageRoute(
-                                      //           builder: (context) =>
-                                      //               ManageServicesContainerPage()));
-                                      // },
-                                      margin: getMargin(
-                                          left: 31, top: 30, right: 32),
-                                      alignment: Alignment.center),
                                   Align(
                                     alignment: Alignment.center,
                                     child: Padding(
@@ -376,31 +385,6 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
   onTapArrowleft2(BuildContext context) {
     Navigator.pop(context);
   }
-
-  // addService(BuildContext context, String name, String offer, String duration,
-  //     String? offerAmount, String description) async {
-  //   Map<String, dynamic> data = {
-  //     'name': name,
-  //     'offer': offer,
-  //     'duration': duration,
-  //     'offerAmount': offerAmount,
-  //     'description': description
-  //   };
-  //   http.Response response =
-  //       await http.post(Uri.parse(Apis.addServiceApi), body: data);
-  //   if (response.statusCode == 200) {
-  //     jsonResponse = json.decode(response.body);
-  //     String dataStatus = jsonResponse['status'].toString();
-  //     resMsg = jsonResponse['message'];
-  //     ToastMessage('error');
-  //     Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //             builder: (context) => ManageServicesContainerPage()));
-  //   } else {
-  //     ToastMessage('error');
-  //   }
-  // }
 }
 
 // import 'dart:convert';

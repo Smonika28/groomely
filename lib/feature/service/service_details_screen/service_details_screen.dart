@@ -29,14 +29,7 @@ class ServiceDetailsScreen extends StatelessWidget {
               centerTitle: true,
               title: Text("Service Details",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
-              actions: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.notifications,
-                      color: Colors.black,
-                    ))
-              ],
+
             ),
             body: Container(
               padding: EdgeInsets.only(top: 10),

@@ -210,9 +210,10 @@ mixin ApiHelper {
             "errorMsg": e.response!.statusMessage.toString()
           };
         }
+
         else if (e.response!.statusCode == 401) {
           if (kDebugMode) {
-            print("400 error- ${e.response!.statusCode}");
+            print("401 error- ${e.response!.statusCode}");
           }
           return {
             "statusCode": 401,

@@ -1,7 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
 import 'package:groomely_seller/feature/booking/widgets/booking_details_screen.dart';
+import 'package:groomely_seller/presentation/signup_screen/signup_screen.dart';
+import '../../../widgets/custom_appbar.dart';
 import '../../notification/presentation/notification.dart';
+import '../../signup/presentaion/signup_screen.dart';
 import '../widgets/booking_history_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
@@ -15,18 +18,21 @@ class BookingHistoryScreen extends StatefulWidget {
 class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
+  String? get status => null;
   String? pickedDate;
+
   Future<void> _selectDate() async {
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),
         firstDate: new DateTime(2020),
         lastDate: new DateTime(2030));
-    if (picked != null)
-      setState(
-        () => pickedDate = picked.toString(),
-      );
+
+    setState(
+          () => pickedDate = picked.toString(),
+    );
   }
+
 
   @override
   void initState() {
@@ -35,12 +41,18 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         .add(FetchBookingHistoryListEvent());
   }
 
+  List<dynamic> bookingHistoryData = [];
+
   @override
   Widget build(BuildContext context) {
+    // var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
         resizeToAvoidBottomInset: false,
+        // appBar: PreferredSize(
+        //     preferredSize: const Size.fromHeight(50),
+        //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
         appBar: AppBar(
           elevation: 2,
           automaticallyImplyLeading: false,
@@ -48,16 +60,6 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
           centerTitle: true,
           title: Text("Booking History",
               style: TextStyle(fontSize: 20, color: Colors.black)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificatonScreen()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                ))
-          ],
         ),
         body: Container(
           padding: getPadding(
@@ -69,7 +71,6 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
           decoration: AppDecoration.fillWhiteA700,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Align(
                 alignment: Alignment.centerRight,
@@ -90,7 +91,18 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                     ),
                     GestureDetector(
                       onTap: () async {
+
+                         // var bookingDate = await _selectDate();
+                        GetStatusDate(status: 'bookingDate.status!');
+                          // _getStatusDate(status: bookingHistoryData.bookingDate.status!);
+                        //   _getStatusDate(status: bookingHistoryData[0].bookingDate.status!);
                         await _selectDate();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookingHistoryScreen(),
+                          ),
+                        );
                         // CustomTableCalender();
                       },
                       child: CustomImageView(
@@ -116,6 +128,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                   } else if (state is BookingHistoryErrorState) {
                     return Center(child: Text(state.errorMsg));
                   } else if (state is BookingHistoryLoadedState) {
+                    bookingHistoryData.addAll(state.bookingHistoryModel.data!);
                     return Expanded(
                       child: Padding(
                         padding: getPadding(
@@ -124,10 +137,8 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                         child: ListView.separated(
                           physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          separatorBuilder: (
-                            context,
-                            index,
-                          ) {
+                          separatorBuilder: (context,
+                              index,) {
                             return SizedBox(
                               height: getVerticalSize(
                                 7,
@@ -150,7 +161,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                                 },
                                 child: BookingHistoryItemWidget(
                                   bookingHistoryData:
-                                      state.bookingHistoryModel.data![index],
+                                  state.bookingHistoryModel.data![index],
                                 ));
                           },
                         ),
@@ -165,5 +176,16 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         ),
       ),
     );
+  }
+
+  GetStatusDate({required String status}) {
+    print('Pickdate--> $pickedDate');
+    if (status == pickedDate) {
+      // bookigHistoryData( status: status);
+      print("hello date");
+    }
+    else {
+      print("no date choosen");
+    }
   }
 }

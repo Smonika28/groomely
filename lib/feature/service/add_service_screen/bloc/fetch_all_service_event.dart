@@ -17,35 +17,37 @@
 //
 //
 
-
-
 part of 'fetch_all_service_bloc.dart';
 
-
 abstract class FetchAllServiceEvent {}
-class FetchAllServiceEvents extends FetchAllServiceEvent{}
+class FetchAllServiceEvents extends FetchAllServiceEvent {}
+
+
 
 abstract class FetchAllFieldEvent {}
-class ServiceDetailsFieldEvent extends FetchAllFieldEvent{
+
+class ServiceDetailsFieldEvent extends FetchAllFieldEvent {
   String serviceID;
   ServiceDetailsFieldEvent({required this.serviceID});
 }
 
 
 
-abstract class AddAllServiceEvent {}
-class AddAllServiceEvents extends AddAllServiceEvent{}
-
-
-
-
-
-abstract class AddAllFieldEvent {}
-
-// class ServiceDetailsFieldEvent extends AddAllFieldEvent{
+// class AddAllServiceEvents extends FetchAllFieldEvent {}
+//
+// class ServiceDetailFieldEvent extends AddAllServiceEvent {
 //   String serviceID;
-//   ServiceDetailsFieldEvent({required this.serviceID});
+//
+//   ServiceDetailFieldEvent({required this.serviceID});
 // }
 
+class AddServiceEvent extends FetchAllFieldEvent {
+  int serviceID;
+   String offerId;
+  int offerPrice;
 
-
+  AddServiceEvent(
+      {required this.serviceID,
+      required this.offerId,
+      required this.offerPrice});
+}

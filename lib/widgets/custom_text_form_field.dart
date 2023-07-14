@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   TextFormFieldVariant? variant;
   TextFormFieldFontStyle? fontStyle;
   Alignment? alignment;
+  bool? readOnly;
   double? width;
   EdgeInsetsGeometry? margin;
   TextEditingController? controller;
@@ -44,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffix,
     this.suffixConstraints,
     this.validator,
+    this.readOnly,
   });
 
   @override
@@ -69,6 +71,7 @@ class CustomTextFormField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: textInputType,
         maxLines: maxLines ?? 1,
+        readOnly: readOnly ?? false,
         decoration: _buildDecoration(),
         validator: validator,
       ),
@@ -84,6 +87,7 @@ class CustomTextFormField extends StatelessWidget {
       focusedBorder: _setBorderStyle(),
       disabledBorder: _setBorderStyle(),
       prefixIcon: prefix,
+
       prefixIconConstraints: prefixConstraints,
       suffixIcon: suffix,
       suffixIconConstraints: suffixConstraints,

@@ -10,6 +10,7 @@ import '../../../theme/app_style.dart';
 import '../../../utils/image_constant.dart';
 import '../../../utils/size_utils.dart';
 import '../../../utils/storage/local_storage.dart';
+import '../../../widgets/custom_appbar.dart';
 import '../../../widgets/custom_image_view.dart';
 import '../../login/presentation/login_screen.dart';
 import '../../notification/presentation/notification.dart';
@@ -45,26 +46,35 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>(
+      // debugLabel: "scaffoldKey",
+    );
+    LocalStorageService localStorageService = LocalStorageService();
+
     return Scaffold(
+      // appBar: PreferredSize(
+      //     preferredSize: const Size.fromHeight(50),
+      //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text("My Profile",
             style: TextStyle(fontSize: 20, color: Colors.black)),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NotificatonScreen()));
-              },
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.black,
-              ))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //                 builder: (context) => NotificatonScreen()));
+        //       },
+        //       icon: Icon(
+        //         Icons.notifications,
+        //         color: Colors.black,
+        //       ))
+        // ],
       ),
       body: BlocBuilder<UserProfileBloc, UserProfileState>(
         builder: (context, state) {
@@ -271,11 +281,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   onTap: () {
                     LocalStorageService()
                         .removeToDisk(LocalStorageService.ACCESS_TOKEN_KEY);
-                    Navigator.of(context).pop();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()));
+                    // Navigator.of(context).pop();
+                     Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(
+                         builder: (context) => const LoginScreen()), (route) => false);
+
                   },
                   height: getVerticalSize(
                     55,

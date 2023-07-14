@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
+import 'package:groomely_seller/widgets/custom_appbar.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
@@ -20,31 +21,35 @@ class _ProductCradScreen extends State<ProductCradScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text("Groomely",
-              style: TextStyle(fontSize: 20, color: Colors.black)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  // Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotificatonScreen()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                )),
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: CustomAppBar(scaffoldKey: scaffoldKey)),
+        // appBar: AppBar(
+        //   automaticallyImplyLeading: false,
+        //   backgroundColor: Colors.white,
+        //   elevation: 0,
+        //   centerTitle: true,
+        //   title: Text("Groomely",
+        //       style: TextStyle(fontSize: 20, color: Colors.black)),
+        //   actions: [
+        //     IconButton(
+        //         onPressed: () {
+        //           // Navigator.pop(context);
+        //           Navigator.push(
+        //               context,
+        //               MaterialPageRoute(
+        //                   builder: (context) => NotificatonScreen()));
+        //         },
+        //         icon: Icon(
+        //           Icons.notifications,
+        //           color: Colors.black,
+        //         )),
+        //   ],
+        // ),
         body: SingleChildScrollView(
           padding: getPadding(
             top: 7,

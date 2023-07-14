@@ -22,9 +22,24 @@ class AppDecoration {
   static BoxDecoration get fillGreenA700 => BoxDecoration(
         color: ColorConstant.greenA700,
       );
+
+
+
   static BoxDecoration get txtFillLightblue400 => BoxDecoration(
         color: ColorConstant.lightBlue400,
       );
+  static BoxDecoration get txtFillLightred400 => BoxDecoration(
+    color: ColorConstant.colorLightRed,
+  );
+  static BoxDecoration get txtFillLightgreen400 => BoxDecoration(
+    color: ColorConstant.colorLightGreen,
+  );
+  static BoxDecoration get txtFillLightyellow400 => BoxDecoration(
+    color: ColorConstant.colorGoldenYellow,
+  );
+
+
+
   static BoxDecoration get outlineBlack9003f => BoxDecoration(
         color: ColorConstant.gray200,
         boxShadow: [

@@ -49,6 +49,7 @@ class ColorConstant {
   static Color colorLightGoldenYellow = Color(0XFFFFE7C1);
   static Color colorPrimaryBlack = Color(0XFF1E1E1E);
   static Color colorLightRed = Colors.redAccent;
+  static Color colorLightGreen = Colors.greenAccent;
 
   static Color calendarBackgroundColor = Color(0XFFFDF2DF);
 

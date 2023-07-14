@@ -8,11 +8,12 @@ import '../../../utils/Toast/app_toast.dart';
 import '../../../utils/color_constant.dart';
 import '../../../utils/image_constant.dart';
 import '../../../utils/size_utils.dart';
+import '../../../utils/storage/local_storage.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_image_view.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import '../../../signup/block/signup_bloc.dart';
-// import '../../signup/bloc/seller_signup_bloc.dart';
+
+ import '../../signup/bloc/seller_signup_bloc.dart';
 import '../../login/presentation/login_screen.dart';
 import '../../../utils/validate/validation.dart';
 import '../../../utils/validate/validation_regx.dart';
@@ -25,7 +26,10 @@ class SignUPScreen extends StatefulWidget {
 }
 
 class _SignUPScreenState extends State<SignUPScreen> {
+  LocalStorageService localStorageService = LocalStorageService();
+
   bool isTextObscurePassword = true;
+
   bool isTextObscureConfrmPassword = true;
 
   TextEditingController emailController = TextEditingController();
@@ -348,4 +352,5 @@ class _SignUPScreenState extends State<SignUPScreen> {
       ),
     );
   }
+
 }

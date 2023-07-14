@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../widgets/custom_appbar.dart';
 import '../../notification/presentation/notification.dart';
 import '../../productCrad/presentation/productCard.dart';
 import '../widgets/dashboard_item_widget.dart';
@@ -18,35 +19,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     BlocProvider.of<HomeViewBloc>(context).add(FetchHomeViewEvents());
   }
-
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text("Groomely",
-              style: TextStyle(fontSize: 20, color: Colors.black)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  // Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotificatonScreen()));
-                  // Navigator.pushNamed(context, AppRoutes.notificatonScreen);
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                )),
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: CustomAppBar(scaffoldKey: scaffoldKey)),
         body: SingleChildScrollView(
           padding: getPadding(
             top: 7,

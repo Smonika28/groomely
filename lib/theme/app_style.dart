@@ -175,6 +175,7 @@ class AppStyle {
 
   static TextStyle txtInterBold12 = TextStyle(
     color: ColorConstant.black90001,
+
     fontSize: getFontSize(
       12,
     ),

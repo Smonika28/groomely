@@ -4,7 +4,7 @@ import '../model/seller_signup_res_model.dart';
 
 class SignupRepository{
   final apiProvider = ApiProvider();
-  SellerSignupModel sellerSignupModel = SellerSignupModel();
+  RegistrationModel sellerSignupModel = RegistrationModel();
   Future<dynamic> getSignup(Map<String,dynamic> reqModel){
     return apiProvider.dataProcessor(reqModel, sellerSignupModel,Apis.signup);
   }

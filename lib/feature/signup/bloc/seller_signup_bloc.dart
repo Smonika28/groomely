@@ -21,7 +21,7 @@ class SellerSignupBloc extends Bloc<SellerSignupEvent, SellerSignupState> {
         "zipcode":  event.zipcode,
         "password":  event.password,
         "confirm_password":  event.cfpassword,
-        "user_type":"USER"
+        "user_type":"BUSINESS_OWNER"
       };
       try {
         emit(SellerSignupLodingState());
@@ -31,7 +31,7 @@ class SellerSignupBloc extends Bloc<SellerSignupEvent, SellerSignupState> {
         print("statusss-->  ${myList.status}");
         if (myList.status == true) {
           LocalStorageService()
-              .saveToDisk(LocalStorageService.ACCESS_TOKEN_KEY, myList.data.authToken);
+              .saveToDisk(LocalStorageService.ACCESS_TOKEN_KEY, myList.token);
           emit(SellerSignupLoadedState(responseModel: myList));
         } else {
           emit(SellerSignupErrorState(errorMsg: myList.message.toString()));

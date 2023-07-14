@@ -24,6 +24,8 @@ class LocalStorageService {
     return preferences.get(key);
   }
 
+  
+
 /* updated _saveToDisk function that handles all types */
   saveToDisk<T>(String key, T content) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();

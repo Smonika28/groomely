@@ -21,10 +21,10 @@ class customValidation {
     RegExp regex =
     RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (value.isEmpty) {
-      return 'Please enter password';
+      return 'Please enter strong password';
     } else {
       if (!regex.hasMatch(value)) {
-        return 'Enter valid password';
+        return 'Enter strong password';
       } else {
         return null;
       }

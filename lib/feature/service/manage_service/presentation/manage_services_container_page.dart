@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/service/manage_service/bloc/manage_service_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/presentation/add_service_screen.dart';
+import '../../../../widgets/custom_appbar.dart';
 import '../../../../widgets/listservicename_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:groomely_seller/core/app_export.dart';
@@ -27,28 +29,32 @@ class _ManageServicesContainerPageState
   bool _checkboxListTile = false;
   @override
   Widget build(BuildContext context) {
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
+        // appBar: PreferredSize(
+        //     preferredSize: const Size.fromHeight(50),
+        //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text("Manage Services",
               style: TextStyle(fontSize: 20, color: Colors.black)),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotificatonScreen()));
-                },
-                icon: Icon(
-                  Icons.notifications,
-                  color: Colors.black,
-                ))
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => NotificatonScreen()));
+          //       },
+          //       icon: Icon(
+          //         Icons.notifications,
+          //         color: Colors.black,
+          //       ))
+          // ],
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -192,7 +198,7 @@ class _ManageServicesContainerPageState
           backgroundColor: ColorConstant.gray200,
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AddServiceScreen()));
+                CupertinoPageRoute(builder: (context) => AddServiceScreen()));
           },
           height: 71,
           width: 71,

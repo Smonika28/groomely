@@ -566,14 +566,14 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
               centerTitle: true,
               title: Text("Booking Details",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
-              actions: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.notifications,
-                      color: Colors.black,
-                    ))
-              ],
+              // actions: [
+              //   IconButton(
+              //       onPressed: () {},
+              //       icon: Icon(
+              //         Icons.notifications,
+              //         color: Colors.black,
+              //       ))
+              // ],
             ),
             body: SingleChildScrollView(
                 padding: getPadding(top: 7),

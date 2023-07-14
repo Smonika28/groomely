@@ -7,7 +7,7 @@ class SellerSignupInitial extends SellerSignupState {}
 class SellerSignupLodingState extends SellerSignupState{}
 
 class SellerSignupLoadedState extends SellerSignupState{
-  SellerSignupModel responseModel;
+  RegistrationModel responseModel;
   SellerSignupLoadedState({required this.responseModel});
 }
 

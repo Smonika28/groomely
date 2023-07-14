@@ -13,9 +13,9 @@ class EditDetailsScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text("Edit Details",style: TextStyle(fontSize:20,color: Colors.black)),
-          actions: [
-            IconButton(onPressed: (){}, icon:Icon(Icons.notifications,color: Colors.black,))
-          ],
+          // actions: [
+          //   IconButton(onPressed: (){}, icon:Icon(Icons.notifications,color: Colors.black,))
+          // ],
         ),
             backgroundColor: ColorConstant.whiteA700,
             body: SingleChildScrollView(
