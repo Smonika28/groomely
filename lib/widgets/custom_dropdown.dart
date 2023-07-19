@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/bloc/fetch_all_service_bloc.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/model/all_service_model.dart';
+
 class CustomDropDown extends StatefulWidget {
   CustomDropDown({required this.onChanged, required this.items});
   void Function(String?)? onChanged;
@@ -9,7 +10,10 @@ class CustomDropDown extends StatefulWidget {
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
+
 class _CustomDropDownState extends State<CustomDropDown> {
+  Data? serviceData;
+
   String? dropdownValue;
   List<String> serviceVals = [];
   List<String> serviceIds = [];
@@ -20,18 +24,33 @@ class _CustomDropDownState extends State<CustomDropDown> {
   }
 
   void setDropDownValues() async {
+
     for (int i = 0; i < widget.items.data!.length; i++) {
+      // serviceData = widget.items.data![0];
+      // dropdownValue = serviceData != null
+      //     ? serviceData?.additionalService?.name.toString() ?? ""
+      //     : "";
       setState(() {
+
+        // serviceData = widget.items.data![i];
+        // dropdownValue = serviceData != null
+        //     ? serviceData?.additionalService?.name.toString() ?? ""
+        //     : "";
+        // dropdownValue =
+        //     widget.items.data![i].additionalService!.name.toString();
         serviceVals
             .add(widget.items.data![i].additionalService!.name.toString());
+        serviceData = widget.items.data![i];
+
+
         serviceIds
             .add((widget.items.data![i].additionalService!.id.toString()));
       });
     }
     if (widget.items.data!.isNotEmpty) {
       print("service id ---$serviceIds");
-      // BlocProvider.of<FetchAllFieldBloc>(context)
-      //     .add(ServiceDetailsFieldEvent(serviceID:serviceIds[0]));
+      BlocProvider.of<FetchAllFieldBloc>(context)
+          .add(ServiceDetailsFieldEvent(serviceID:serviceIds[0]));
       setState(() {
         dropdownValue = serviceVals[0];
       });
@@ -49,13 +68,17 @@ class _CustomDropDownState extends State<CustomDropDown> {
       icon: const Icon(Icons.keyboard_arrow_down_outlined),
       elevation: 16,
       hint: const Text(
-        "Please select a branch",
+          // '${serviceData?.service?.additionalService?.name}',
+         "Please select a branch",
         style: TextStyle(color: Colors.white),
       ),
       style: const TextStyle(color: Colors.deepPurple),
+
       onChanged: (String? newValue) async {
         setState(() {
           dropdownValue = newValue!;
+          {serviceData?.service?.additionalService?.name = newValue!;}
+
         });
         var serviceId;
         for (var element in serviceVals) {

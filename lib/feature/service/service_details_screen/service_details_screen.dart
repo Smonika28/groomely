@@ -4,6 +4,7 @@ import 'package:groomely_seller/feature/service/add_service_screen/presentation/
 import 'package:groomely_seller/presentation/edit_details_screen/edit_details_screen.dart';
 import 'package:groomely_seller/widgets/custom_floating_button.dart';
 
+import '../add_service_screen/presentation/edit_service_screen.dart';
 import '../manage_service/model/service_model.dart';
 
 class ServiceDetailsScreen extends StatelessWidget {
@@ -17,7 +18,6 @@ class ServiceDetailsScreen extends StatelessWidget {
         child: Scaffold(
             backgroundColor: ColorConstant.whiteA700,
             appBar: AppBar(
-              
               elevation: 0,
               leading: GestureDetector(
                   onTap: () {
@@ -29,10 +29,9 @@ class ServiceDetailsScreen extends StatelessWidget {
               centerTitle: true,
               title: Text("Service Details",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
-
             ),
             body: Container(
-              padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 10),
                 height: getVerticalSize(807),
                 width: double.maxFinite,
                 decoration: AppDecoration.fillGray200,
@@ -123,7 +122,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 2),
-                                                  child: Text("${serviceData?.service?.category?.name}",
+                                                  child: Text(
+                                                      "${serviceData?.service?.category?.name}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -143,7 +143,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 3),
-                                                  child: Text("${serviceData?.service?.serviceType?.name}",
+                                                  child: Text(
+                                                      "${serviceData?.service?.serviceType?.name}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -162,7 +163,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 6),
-                                                  child: Text("${serviceData?.service?.duration}",
+                                                  child: Text(
+                                                      "${serviceData?.service?.duration}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -181,7 +183,8 @@ class ServiceDetailsScreen extends StatelessWidget {
                                               Padding(
                                                   padding: getPadding(
                                                       left: 26, top: 6),
-                                                  child: Text("${serviceData?.rate}",
+                                                  child: Text(
+                                                      "${serviceData?.rate}",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
@@ -272,28 +275,29 @@ class ServiceDetailsScreen extends StatelessWidget {
                                                           style: AppStyle
                                                               .txtInterLight12)))
                                             ]))),
-                                  SizedBox(height: 20),
+                                SizedBox(height: 20),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomFloatingButton(
-                                      backgroundColor: ColorConstant.lightBlue400,
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AddServiceScreen()));
-                                      },
-                                      height: 71,
-                                      width: 71,
-                                      child: Icon(Icons.edit)
-                                    ),
+                                        backgroundColor:
+                                            ColorConstant.lightBlue400,
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      // serviceData: widget.serviceData,
+                                                      EditServiceScreen()));
+                                        },
+                                        height: 71,
+                                        width: 71,
+                                        child: Icon(Icons.edit)),
                                     // SizedBox(width: 20),
                                     // CustomFloatingButton(
                                     //   backgroundColor: ColorConstant.redA200,
                                     //   onTap: () {
-                                      
+                                    //
                                     //   },
                                     //   height: 71,
                                     //   width: 71,

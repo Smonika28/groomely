@@ -109,7 +109,7 @@ class _ListservicenameItemWidgetState extends State<ListservicenameItemWidget> {
                           top: 2,
                         ),
                         child: Text(
-                          "${widget.serviceData.service?.additionalService?.name}",
+                           "${widget.serviceData.service?.additionalService?.name}",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterLight16,

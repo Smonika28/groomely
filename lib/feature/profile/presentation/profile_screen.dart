@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groomely_seller/widgets/custom_button.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
@@ -9,12 +8,10 @@ import '../../../theme/app_decoration.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/image_constant.dart';
 import '../../../utils/size_utils.dart';
-import '../../../utils/storage/local_storage.dart';
 import '../../../widgets/custom_appbar.dart';
 import '../../../widgets/custom_image_view.dart';
-import '../../login/presentation/login_screen.dart';
-import '../../notification/presentation/notification.dart';
-import '../../signup/presentaion/signup_screen.dart';
+import '../../editPassword/presentation/edit_password.dart';
+import '../../editPersonalDetail/presentation/edit_personal_details.dart';
 import '../bloc/user_profile_bloc.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -26,6 +23,7 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   File? image;
+
   Future pickImage({fromCamera = false}) async {
     try {
       final image = await ImagePicker().pickImage(
@@ -46,35 +44,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalKey<ScaffoldState>(
-      // debugLabel: "scaffoldKey",
-    );
-    LocalStorageService localStorageService = LocalStorageService();
-
     return Scaffold(
-      // appBar: PreferredSize(
-      //     preferredSize: const Size.fromHeight(50),
-      //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
-
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text("My Profile",
-            style: TextStyle(fontSize: 20, color: Colors.black)),
-        // actions: [
-        //   IconButton(
-        //       onPressed: () {
-        //         Navigator.push(
-        //             context,
-        //             MaterialPageRoute(
-        //                 builder: (context) => NotificatonScreen()));
-        //       },
-        //       icon: Icon(
-        //         Icons.notifications,
-        //         color: Colors.black,
-        //       ))
-        // ],
+      appBar: CustomAppBar(
+        title: 'My Profile',
+        autoImplyLeading: false,
       ),
       body: BlocBuilder<UserProfileBloc, UserProfileState>(
         builder: (context, state) {
@@ -143,7 +116,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   color: Color(0XFFD5A353),
                                 ),
                                 onTap: () {
-                                  print("hello in this ");
                                   showModalBottomSheet(
                                     context: context,
                                     builder: (context) {
@@ -188,7 +160,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         Padding(
                           padding: getPadding(
-                            top: 12,
+                            top: 10,
                           ),
                           child: Text(
                             "${state.profileModel.data?.details?.name}"
@@ -200,7 +172,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         ),
                         Padding(
                           padding: getPadding(
-                            top: 2,
+                            top: 0,
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -233,22 +205,50 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Container(
                     width: double.maxFinite,
                     child: Container(
-                        width: getHorizontalSize(384),
+                        // width: getHorizontalSize(384),
                         margin: EdgeInsets.all(14),
-                        padding: getPadding(
-                            left: 26, top: 24, right: 26, bottom: 24),
+                        padding:
+                            getPadding(left: 26, top: 4, right: 16, bottom: 4),
                         decoration: AppDecoration.fillGray200.copyWith(
                             borderRadius: BorderRadiusStyle.roundedBorder6),
                         child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                            //mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Personal Information",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditPersonalDetailsScreen()));
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.grey,
+                                        size: 16,
+                                      )),
+                                ],
+                              ),
                               contentField(
                                   title: "shop owner name",
                                   subTitle:
@@ -268,38 +268,51 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               contentField(
                                   title: "Phone number",
                                   subTitle:
-                                      "${state.profileModel.data?.details?.name}"),
-                              contentField(
-                                  title: "password",
-                                  subTitle: "********************"),
+                                      "${state.profileModel.data?.details?.phone}"),
                             ]))),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomButton(
-                  // onTap: (){},
-                  onTap: () {
-                    LocalStorageService()
-                        .removeToDisk(LocalStorageService.ACCESS_TOKEN_KEY);
-                    // Navigator.of(context).pop();
-                     Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(
-                         builder: (context) => const LoginScreen()), (route) => false);
-
-                  },
-                  height: getVerticalSize(
-                    55,
-                  ),
-                  text: "LOGOUT",
-                  margin: getMargin(
-                    left: 60,
-                    top: 0,
-                    right: 61,
-                  ),
-                ),
-                // const Padding(
-                //   padding: EdgeInsets.only(bottom: 30, left: 30),
-                //   child: Text("© 2023 Groomely"),
-                // ),
+                Container(
+                    width: double.maxFinite,
+                    child: Container(
+                        width: getHorizontalSize(384),
+                        margin: EdgeInsets.all(14),
+                        padding: getPadding(
+                            left: 26, top: 10, right: 26, bottom: 10),
+                        decoration: AppDecoration.fillGray200.copyWith(
+                            borderRadius: BorderRadiusStyle.roundedBorder6),
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Change Password",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey),
+                                    // style: AppStyle.txtInterBold16,
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditPasswordScreen()));
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.grey,
+                                        size: 16,
+                                      )),
+                                ],
+                              ),
+                            ]))),
               ],
             );
           }

@@ -20,6 +20,8 @@ class AppRoutes {
   static const String loginScreen = '/login_screen';
   static const String signupScreen = '/signup_screen';
   static const String dashboardScreen = '/dashboard_screen';
+  static const String editProfileScreen = '/edit_profile_screen';
+
   static const String manageServicesContainerPage =
       '/manage_services_container_page';
   static const String manageServicesContainer1Screen =

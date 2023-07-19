@@ -44,6 +44,8 @@ class Data {
   int? additionalServiceId;
   AdditionalService? additionalService;
 
+
+
   Data({this.id, this.additionalServiceId, this.additionalService});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -53,6 +55,10 @@ class Data {
         ? new AdditionalService.fromJson(json['additional_service'])
         : null;
   }
+
+  get service => null;
+
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

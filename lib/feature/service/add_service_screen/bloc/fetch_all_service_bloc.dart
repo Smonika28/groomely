@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:groomely_seller/core/api/api_string.dart';
 import 'package:groomely_seller/feature/service/add_service_screen/model/add_service_response_model.dart';
@@ -29,13 +28,10 @@ class FetchAllServiceBloc
         emit(FetchAllServiceErrorState(message: e.toString()));
       }
     });
-
   }
 }
 
-
-class FetchAllFieldBloc
-    extends Bloc<FetchAllFieldEvent, FetchAllFieldState> {
+class FetchAllFieldBloc extends Bloc<FetchAllFieldEvent, FetchAllFieldState> {
   FetchAllFieldBloc() : super(FetchAllFieldInitial()) {
     final apiProvider = ApiProvider();
     ServiceFieldModel serviceFieldModel = ServiceFieldModel();
@@ -62,19 +58,18 @@ class FetchAllFieldBloc
       }
     });
 
-
-
     /// add service bloc
     ///
     on<AddServiceEvent>((event, emit) async {
       try {
         emit(FetchAllServiceFieldLoading());
-        final myData = await apiProvider.dataProcessor(
-            {"service_id": event.serviceID, "offer_id":event.offerId,"rate":event.offerPrice},
-            addServiceResponseModel,
-            Apis.addServiceApi);
+        final myData = await apiProvider.dataProcessor({
+          "service_id": event.serviceID,
+          "offer_id": event.offerId,
+          "rate": event.offerPrice
+        }, addServiceResponseModel, Apis.addServiceApi);
         print("add service--> ${myData.status}");
-        if (myData!= null && myData.status == true) {
+        if (myData != null && myData.status == true) {
           print("service loaded--> ${myData.toJson()}");
           emit(addServiceState(message: myData.message));
           // emit(FetchAllServiceDetailsFieldSetDoneState(
@@ -88,9 +83,5 @@ class FetchAllFieldBloc
         emit(FetchAllServiceDetailsFieldSetfaildState());
       }
     });
-
-  }}
-
-
-//Mycode
-
+  }
+}

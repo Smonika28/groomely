@@ -1,43 +1,46 @@
-import 'dart:math';
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:groomely_seller/feature/signup/repo/seller_signup_repo.dart';
-import 'package:groomely_seller/utils/storage/local_storage.dart';
-import 'package:meta/meta.dart';
-import '../model/seller_signup_res_model.dart';
+import 'package:equatable/equatable.dart';
+import 'package:groomely_seller/feature/signup/model/seller_signup_res_model.dart';
+
+import '../../../core/api/api_string.dart';
+import '../../../utils/APi/api_provider.dart';
+
 part 'seller_signup_event.dart';
+
 part 'seller_signup_state.dart';
 
-
-
 class SellerSignupBloc extends Bloc<SellerSignupEvent, SellerSignupState> {
-  SellerSignupBloc() : super(SellerSignupInitial()) {
-    SignupRepository repository = SignupRepository();
-    on<SellerSignupEvents>((event, emit) async {
-      Map<String, dynamic> requestModel ={
-        "first_name":event.firstName,
-        "last_name":  event.lastName,
-        "email":  event.email,
-        "phone":  event.phone,
-        "zipcode":  event.zipcode,
-        "password":  event.password,
-        "confirm_password":  event.cfpassword,
-        "user_type":"BUSINESS_OWNER"
+  SellerSignupBloc() : super(SellerSignupStateInitial()) {
+    SellerSignupModel sellerSignupModel = SellerSignupModel();
+    ApiProvider apiProvider = ApiProvider();
+
+    on<SellerSignupSubmittedEvent>((event, emit) async {
+      Map<String, dynamic> requestModel = {
+        'first_name': event.firstName.toString(),
+        'last_name': event.lastName.toString(),
+        'email': event.email.toString(),
+        'phone': event.phone.toString(),
+        'zipcode': event.zipcode.toString(),
+        'password': event.password.toString(),
+        'confirm_password': event.confirmPassword.toString(),
+        'user_type': "BUSINESS_OWNER",
       };
+
       try {
-        emit(SellerSignupLodingState());
-        print(requestModel);
-        final myList = await repository.getSignup(requestModel);
-        print('myListdata--> $myList');
-        print("statusss-->  ${myList.status}");
-        if (myList.status == true) {
-          LocalStorageService()
-              .saveToDisk(LocalStorageService.ACCESS_TOKEN_KEY, myList.token);
-          emit(SellerSignupLoadedState(responseModel: myList));
+        emit(SellerSignupStateLoading());
+
+        final myData = await apiProvider.dataProcessor(
+            requestModel, sellerSignupModel, Apis.signup);
+        if (myData != null && myData.status == true) {
+          print('update  profile Response ---------------------- ${myData}');
+          emit(SellerSignupStateLoaded(myData));
         } else {
-          emit(SellerSignupErrorState(errorMsg: myList.message.toString()));
+          emit(SellerSignupStateFailed(myData.toString()));
         }
-      } on NetworkError {
-        emit(SellerSignupErrorState(errorMsg: "No Internet Connection"));
+      } catch (e) {
+        emit(SellerSignupStateFailed(e.toString()));
       }
     });
   }

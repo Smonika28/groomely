@@ -20,6 +20,10 @@ class BookingHistoryItemWidget extends StatelessWidget {
         borderRadius: BorderRadiusStyle.roundedBorder6,
       ),
       child: Container(
+        decoration: AppDecoration.txtFillLightblue400.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder6,
+          color: _getCardColor(status: bookingHistoryData.status!),
+        ),
         height: getVerticalSize(
           197,
         ),
@@ -31,9 +35,6 @@ class BookingHistoryItemWidget extends StatelessWidget {
           top: 6,
           right: 1,
           bottom: 6,
-        ),
-        decoration: AppDecoration.fillGray200.copyWith(
-          borderRadius: BorderRadiusStyle.roundedBorder6,
         ),
         child: Stack(
           alignment: Alignment.topLeft,
@@ -177,13 +178,13 @@ class BookingHistoryItemWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtInterLight16,
+
                                   // if(bookingHistoryData.bookingDate== pickDate){
                                   //   print("hello date");
                                   // }
                                   // else{
                                   //   print("no date");
                                   // }
-
                                 ),
                               ),
                             ],
@@ -273,7 +274,14 @@ class BookingHistoryItemWidget extends StatelessWidget {
     }
   }
 
-
+  Color _getCardColor({required String status}) {
+    if (status == 'cancelled') {
+      return Color(0xffFFE7C1);
+      // return Colors.redAccent.shade100;
+    } else {
+      return Colors.grey.shade100;
+    }
+  }
 }
 
 //

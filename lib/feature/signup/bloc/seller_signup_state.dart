@@ -1,17 +1,32 @@
 part of 'seller_signup_bloc.dart';
 
-abstract class SellerSignupState {}
+abstract class SellerSignupState extends Equatable {
+  const SellerSignupState();
 
-class SellerSignupInitial extends SellerSignupState {}
-
-class SellerSignupLodingState extends SellerSignupState{}
-
-class SellerSignupLoadedState extends SellerSignupState{
-  RegistrationModel responseModel;
-  SellerSignupLoadedState({required this.responseModel});
+  @override
+  List<Object> get props => [];
 }
 
-class SellerSignupErrorState extends SellerSignupState{
-  String errorMsg;
-  SellerSignupErrorState({required this.errorMsg});
+class SellerSignupStateInitial extends SellerSignupState {}
+
+class SellerSignupStateLoading extends SellerSignupState {}
+
+class SellerSignupStateLoaded extends SellerSignupState {
+  final SellerSignupModel sellerSignupModel;
+
+  SellerSignupStateLoaded(this.sellerSignupModel);
+
+  @override
+  List<Object> get props => [sellerSignupModel];
+
 }
+
+class SellerSignupStateFailed extends SellerSignupState {
+  final String errorMessage;
+
+  SellerSignupStateFailed(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}
+

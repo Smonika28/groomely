@@ -22,11 +22,14 @@ class _ManageServicesContainerPageState
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: null));
+    BlocProvider.of<ManageServiceBloc>(context)
+        .add(FetchServiceListEvent(statusId: null));
   }
 
   bool _checkbox = false;
   bool _checkboxListTile = false;
+  int filterKey = -1;
+
   @override
   Widget build(BuildContext context) {
     var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -42,19 +45,6 @@ class _ManageServicesContainerPageState
           centerTitle: true,
           title: Text("Manage Services",
               style: TextStyle(fontSize: 20, color: Colors.black)),
-          // actions: [
-          //   IconButton(
-          //       onPressed: () {
-          //         Navigator.push(
-          //             context,
-          //             MaterialPageRoute(
-          //                 builder: (context) => NotificatonScreen()));
-          //       },
-          //       icon: Icon(
-          //         Icons.notifications,
-          //         color: Colors.black,
-          //       ))
-          // ],
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -105,43 +95,51 @@ class _ManageServicesContainerPageState
                                   IconButton(
                                       onPressed: () {
                                         Navigator.pop(context);
+                                        setState(() {});
                                       },
                                       icon: Icon(Icons.close))
                                 ],
                               ),
                               Divider(),
                               Text("Status"),
-                              Row(
-                                children: [
-                                  Checkbox.adaptive(
-                                    value: _checkbox,
-                                    onChanged: (value) {
-                                      print("heello");
-                                      BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: 1));
-                                      setState(() {
-                                         _checkbox = !_checkbox;
+                              StatefulBuilder(builder: (context, setState) {
+                                return Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Checkbox.adaptive(
+                                          value: _checkbox,
+                                          onChanged: (value) {
+                                            print("heello");
+                                            filterKey = 1;
+                                            setState(() {
+                                              _checkbox = !_checkbox;
+                                            });
+                                          },
+                                        ),
+                                        Text("Active"),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Checkbox.adaptive(
+                                          value: _checkboxListTile,
+                                          onChanged: (value) {
+                                            print("hheeeeellllllloooooo");
 
-                                      });
-                                    },
-                                  ),
-                                  Text("Active"),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Checkbox.adaptive(
-                                    value: _checkboxListTile,
-                                    onChanged: (value) {
-                                      print("hheeeeellllllloooooo");
-                                      BlocProvider.of<ManageServiceBloc>(context).add(FetchServiceListEvent(statusId: 0));
-                                      setState(() {
-                                        _checkboxListTile = !_checkboxListTile;
-                                      });
-                                    },
-                                  ),
-                                  Text("Inactive"),
-                                ],
-                              )
+                                            setState(() {
+                                              filterKey = 0;
+                                              _checkboxListTile =
+                                                  !_checkboxListTile;
+                                            });
+                                          },
+                                        ),
+                                        Text("Inactive"),
+                                      ],
+                                    )
+                                  ],
+                                );
+                              })
                             ],
                           ),
                         ));
@@ -180,11 +178,29 @@ class _ManageServicesContainerPageState
                         },
                         itemCount: state.serviceModel.data!.length,
                         itemBuilder: (context, index) {
-                          print("pandey jii---> ");
-                          return ListservicenameItemWidget(
-                            serviceData: state.serviceModel.data![index],
-                          );
-                        },
+                          print("pandey jii---> ${state.serviceModel.data![index].status}");
+                          if(filterKey == 1){
+                            if(state.serviceModel.data![index].status == 1) {
+                              return ListservicenameItemWidget(
+                                serviceData: state.serviceModel.data![index],
+                              );
+
+                            } } else if(filterKey == 0){
+                              if(state.serviceModel.data![index].status == 0) {
+                                return ListservicenameItemWidget(
+                                  serviceData: state.serviceModel.data![index],
+                                );
+                              }
+                            }
+                            else {
+                            return ListservicenameItemWidget(
+                              serviceData: state.serviceModel.data![index],
+                            );
+                          }
+                          // return ListservicenameItemWidget(
+                          //   serviceData: state.serviceModel.data![index],
+                          // );
+                        }
                       ),
                     ),
                   );

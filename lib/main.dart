@@ -75,6 +75,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
 import 'package:groomely_seller/feature/dashboard_screen/bloc/home_view_bloc.dart';
+import 'package:groomely_seller/feature/editPersonalDetail/bloc/edit_profile_bloc.dart';
 import 'package:groomely_seller/feature/login/bloc/seller_login_bloc.dart';
 import 'package:groomely_seller/feature/onboarding/presentation/splash_screen/splash_screen.dart';
 import 'package:groomely_seller/feature/profile/bloc/user_profile_bloc.dart';
@@ -95,6 +96,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SellerLoginBloc>(create: (context) => SellerLoginBloc()),
+        BlocProvider<EditProfileBloc>(create: (context) => EditProfileBloc()),
         BlocProvider<SellerSignupBloc>(create: (context) => SellerSignupBloc()),
         BlocProvider<ManageServiceBloc>(
             create: (context) => ManageServiceBloc()),
@@ -106,6 +108,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<UserProfileBloc>(create: (context) => UserProfileBloc()),
         BlocProvider<FetchAllFieldBloc>(
             create: (context) => FetchAllFieldBloc())
+
       ],
       child: MaterialApp(
         theme: ThemeData(

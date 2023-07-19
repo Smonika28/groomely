@@ -21,13 +21,12 @@ class _ProductCradScreen extends State<ProductCradScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(50),
-            child: CustomAppBar(scaffoldKey: scaffoldKey)),
+            child: CustomAppBar(title: 'Products',)),
         // appBar: AppBar(
         //   automaticallyImplyLeading: false,
         //   backgroundColor: Colors.white,

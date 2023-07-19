@@ -18,18 +18,20 @@ import '../../../../widgets/custom_dropdown.dart';
 import '../../../../widgets/custom_text_form_field.dart';
 import '../../../signup/bloc/seller_signup_bloc.dart';
 import '../../manage_service/presentation/manage_services_container_page.dart';
+import '../../service_details_screen/service_details_screen.dart';
 import '../bloc/fetch_all_service_bloc.dart';
 import 'package:http/http.dart' as http;
-
-class AddServiceScreen extends StatefulWidget {
+import '../bloc/fetch_all_service_bloc.dart';
+class EditServiceScreen extends StatefulWidget {
   @override
-  State<AddServiceScreen> createState() => _AddServiceScreenState();
+  State<EditServiceScreen> createState() => _EditServiceScreenState();
 }
 
-class _AddServiceScreenState extends State<AddServiceScreen> {
+class _EditServiceScreenState extends State<EditServiceScreen> {
   bool _isChecked = true;
   var jsonResponse;
   var resMsg;
+
   TextEditingController serviceController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
   TextEditingController serviceTypeController = TextEditingController();
@@ -45,6 +47,8 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    String? selectedService;
     var scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
@@ -62,7 +66,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           centerTitle: true,
-          title: Text("Add Service",
+          title: Text("Edit Service",
               style: TextStyle(fontSize: 20, color: Colors.black)),
         ),
         body: SizedBox(
@@ -100,8 +104,12 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           fontWeight: FontWeight.w400))
                                 ]),
                                 textAlign: TextAlign.left)),
+
+
                         BlocBuilder<FetchAllServiceBloc, FetchAllServiceState>(
+
                           builder: (context, state) {
+
                             if (kDebugMode) {
                               print(state.toString());
                             }
@@ -118,8 +126,14 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                         color: ColorConstant.orangeA200,
                                         width: getHorizontalSize(1))),
                                 child: CustomDropDown(
-                                    onChanged: (v) {},
-                                    items: state.allServiceModel),
+                                    onChanged: (v) {
+                                      selectedService = v;
+                                      print("selectedService $selectedService");
+                                      // selectedService = service.name;
+                                      // ServiceDetailsScreen({required this.serviceData});
+                                    },
+                                     items: state.allServiceModel
+                                      ),
                               );
                             }
                             return Shimmer.fromColors(
@@ -133,6 +147,8 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                             );
                           },
                         ),
+
+
                         BlocConsumer<FetchAllFieldBloc, FetchAllFieldState>(
                           listener: (context, state) {
                             if (state is addServiceState) {
@@ -171,7 +187,6 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
-                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.category!.name!}",
                                   ),
@@ -183,7 +198,6 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
-                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.serviceType!.name!}",
                                   ),
@@ -196,7 +210,6 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
-                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.duration!}",
                                   ),
@@ -208,7 +221,6 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                           textAlign: TextAlign.left,
                                           style: AppStyle.txtInterRegular14)),
                                   CustomTextFormField(
-                                    readOnly: true,
                                     hintText:
                                         "${state.detailServiceModel.data!.description!}",
                                   ),
@@ -236,7 +248,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                                       style: AppStyle
                                                           .txtInterRegular14)),
                                               CustomTextFormField(
-                                                readOnly: true,
+                                                // readOnly: true,
                                                 hintText:
                                                     "${state.detailServiceModel.data!.offer!.offerAmount}",
                                               )
@@ -279,7 +291,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       height: getVerticalSize(
                                         55,
                                       ),
-                                      text: "Add Service",
+                                      text: "UPDATE",
                                       margin: getMargin(
                                         left: 60,
                                         top: 40,
@@ -287,6 +299,26 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
                                       ),
                                     ),
                                   ),
+
+                                  // CustomButton(
+                                  //
+                                  //     height: getVerticalSize(55),
+                                  //     text: "ADD SERVICE",
+                                  //
+                                  //     onTap:(){
+                                  //       print("add Service btn");
+                                  //
+                                  //     },
+                                  //     // onTap: () {
+                                  //     //   Navigator.push(
+                                  //     //       context,
+                                  //     //       MaterialPageRoute(
+                                  //     //           builder: (context) =>
+                                  //     //               ManageServicesContainerPage()));
+                                  //     // },
+                                  //     margin: getMargin(
+                                  //         left: 31, top: 30, right: 32),
+                                  //     alignment: Alignment.center),
                                   Align(
                                     alignment: Alignment.center,
                                     child: Padding(

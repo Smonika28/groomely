@@ -19,15 +19,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     BlocProvider.of<HomeViewBloc>(context).add(FetchHomeViewEvents());
   }
-  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(50),
-            child: CustomAppBar(scaffoldKey: scaffoldKey)),
+        appBar: CustomAppBar(title: 'Groomely', autoImplyLeading: false,),
         body: SingleChildScrollView(
           padding: getPadding(
             top: 7,

@@ -13,7 +13,7 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_image_view.dart';
 import '../../../widgets/custom_text_form_field.dart';
 
- import '../../signup/bloc/seller_signup_bloc.dart';
+import '../../signup/bloc/seller_signup_bloc.dart';
 import '../../login/presentation/login_screen.dart';
 import '../../../utils/validate/validation.dart';
 import '../../../utils/validate/validation_regx.dart';
@@ -29,31 +29,20 @@ class _SignUPScreenState extends State<SignUPScreen> {
   LocalStorageService localStorageService = LocalStorageService();
 
   bool isTextObscurePassword = true;
-
   bool isTextObscureConfrmPassword = true;
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
   TextEditingController cnfPasswordController = TextEditingController();
-
   TextEditingController firstNameController = TextEditingController();
-
   TextEditingController lastNameController = TextEditingController();
-
   TextEditingController phoneController = TextEditingController();
-
   TextEditingController zipCodeController = TextEditingController();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    String _errorMessage = '';
     return Scaffold(
       backgroundColor: ColorConstant.whiteA700,
-      // resizeToAvoidBottomInset: false,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -177,7 +166,6 @@ class _SignUPScreenState extends State<SignUPScreen> {
                           Icons.visibility_rounded,
                         ),
                 ),
-
                 validator: (input) =>
                     customValidation.validatePassword(input ?? ' '),
                 margin: getMargin(
@@ -249,54 +237,57 @@ class _SignUPScreenState extends State<SignUPScreen> {
                 textInputAction: TextInputAction.done,
                 textInputType: TextInputType.emailAddress,
               ),
-              BlocListener<SellerSignupBloc, SellerSignupState>(
-                listener: (context, state) {
-                  if (state is SellerSignupLoadedState) {
-                    print(
-                        "state --> ${state.responseModel.message.toString()}");
-                    ToastMessage.toast(
-                        context: context,
-                        message: state.responseModel.message.toString(),
-                        messageColor: Colors.white,
-                        background: Colors.green);
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ManageServicesContainer1Screen()),
-                        (route) => false);
-                  } else if (state is SellerSignupErrorState) {
-                    ToastMessage.toast(
-                        duration: 5000,
-                        context: context,
-                        message: state.errorMsg.toString(),
-                        messageColor: Colors.white,
-                        background: Colors.redAccent);
-                  }
-                },
-                child: CustomButton(
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      BlocProvider.of<SellerSignupBloc>(context).add(
-                          SellerSignupEvents(
-                              firstName: firstNameController.text.trim(),
-                              lastName: lastNameController.text.trim(),
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim(),
-                              zipcode: zipCodeController.text.trim(),
-                              cfpassword: cnfPasswordController.text.trim(),
-                              phone: phoneController.text.trim()));
+              BlocProvider(
+                create: (context) => SellerSignupBloc(),
+                child: BlocConsumer<SellerSignupBloc, SellerSignupState>(
+                  listener: (context, state) {
+                    if (state is SellerSignupStateLoaded) {
+                      ToastMessage.toast(
+                          context: context,
+                          message: state.sellerSignupModel.message.toString(),
+                          messageColor: Colors.white,
+                          background: Colors.green);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ManageServicesContainer1Screen()),
+                          (route) => false);
+                    } else if (state is SellerSignupStateFailed) {
+                      ToastMessage.toast(
+                          duration: 5000,
+                          context: context,
+                          message: state.errorMessage.toString(),
+                          messageColor: Colors.white,
+                          background: Colors.redAccent);
                     }
                   },
-                  height: getVerticalSize(
-                    55,
-                  ),
-                  text: "SIGN UP",
-                  margin: getMargin(
-                    left: 60,
-                    top: 40,
-                    right: 61,
-                  ),
+                  builder: (context, state) {
+                    return CustomButton(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<SellerSignupBloc>().add(
+                              SellerSignupSubmittedEvent(
+                                  firstNameController.text,
+                                  lastNameController.text,
+                                  emailController.text,
+                                  phoneController.text,
+                                  zipCodeController.text,
+                                  passwordController.text,
+                                  cnfPasswordController.text));
+                        }
+                      },
+                      height: getVerticalSize(
+                        55,
+                      ),
+                      text: "SIGN UP",
+                      margin: getMargin(
+                        left: 60,
+                        top: 40,
+                        right: 61,
+                      ),
+                    );
+                  },
                 ),
               ),
               Align(
@@ -352,5 +343,6 @@ class _SignUPScreenState extends State<SignUPScreen> {
       ),
     );
   }
-
 }
+
+//

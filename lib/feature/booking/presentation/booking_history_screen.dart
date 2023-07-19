@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:groomely_seller/feature/booking/bloc/booking_history_bloc.dart';
 import 'package:groomely_seller/feature/booking/widgets/booking_details_screen.dart';
@@ -21,7 +23,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
   String? get status => null;
   String? pickedDate;
 
-  Future<void> _selectDate() async {
+  Future<String> _selectDate() async {
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),
@@ -30,7 +32,9 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
 
     setState(
           () => pickedDate = picked.toString(),
+
     );
+    return pickedDate!;
   }
 
 
@@ -91,11 +95,11 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                     ),
                     GestureDetector(
                       onTap: () async {
+                         String bookingDate = await _selectDate();
+                         print("bookingDate---> ${bookingDate.toString()}");
+                           setState(() {
 
-                         // var bookingDate = await _selectDate();
-                        GetStatusDate(status: 'bookingDate.status!');
-                          // _getStatusDate(status: bookingHistoryData.bookingDate.status!);
-                        //   _getStatusDate(status: bookingHistoryData[0].bookingDate.status!);
+                           });
                         await _selectDate();
                         Navigator.push(
                           context,
@@ -129,6 +133,8 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                     return Center(child: Text(state.errorMsg));
                   } else if (state is BookingHistoryLoadedState) {
                     bookingHistoryData.addAll(state.bookingHistoryModel.data!);
+                    print("bookingHistoryLength-----> ${bookingHistoryData.length}");
+
                     return Expanded(
                       child: Padding(
                         padding: getPadding(
@@ -178,14 +184,4 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
     );
   }
 
-  GetStatusDate({required String status}) {
-    print('Pickdate--> $pickedDate');
-    if (status == pickedDate) {
-      // bookigHistoryData( status: status);
-      print("hello date");
-    }
-    else {
-      print("no date choosen");
-    }
-  }
 }
