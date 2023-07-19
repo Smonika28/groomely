@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:groomely_seller/feature/signup/model/request_model.dart';
 import 'package:groomely_seller/feature/signup/model/seller_signup_res_model.dart';
 
 import '../../../core/api/api_string.dart';
@@ -17,28 +19,28 @@ class SellerSignupBloc extends Bloc<SellerSignupEvent, SellerSignupState> {
     ApiProvider apiProvider = ApiProvider();
 
     on<SellerSignupSubmittedEvent>((event, emit) async {
-      Map<String, dynamic> requestModel = {
-        'first_name': event.firstName.toString(),
-        'last_name': event.lastName.toString(),
-        'email': event.email.toString(),
-        'phone': event.phone.toString(),
-        'zipcode': event.zipcode.toString(),
-        'password': event.password.toString(),
-        'confirm_password': event.confirmPassword.toString(),
-        'user_type': "BUSINESS_OWNER",
-      };
+      SellerSignupRequestModel requestModel = SellerSignupRequestModel(
+          firstName: event.firstName,
+          lastName: event.lastName,
+          email: event.email,
+          phone: event.phone,
+          zipcode: event.zipcode,
+          password: event.password,
+          confirmPassword: event.confirmPassword,
+          userType: "BUSINESS_OWNER");
+
 
       try {
         emit(SellerSignupStateLoading());
-
-        final myData = await apiProvider.dataProcessor(
-            requestModel, sellerSignupModel, Apis.signup);
-        if (myData != null && myData.status == true) {
-          print('update  profile Response ---------------------- ${myData}');
-          emit(SellerSignupStateLoaded(myData));
-        } else {
-          emit(SellerSignupStateFailed(myData.toString()));
-        }
+       final myData = await apiProvider.dataProcessor(
+            requestModel.toJson(), sellerSignupModel, Apis.signup);
+        //if (myData != null && myData.status == true) {
+          //print('seller signup  Response ---------------------- ${myData.fromJson(myData.data)}');
+          emit(SellerSignupStateLoaded(jsonDecode(myData.data)));
+        //}
+        // else {
+        //   emit(SellerSignupStateFailed(myData));
+        // }
       } catch (e) {
         emit(SellerSignupStateFailed(e.toString()));
       }

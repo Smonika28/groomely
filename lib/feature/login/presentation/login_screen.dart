@@ -199,11 +199,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: "SIGNUP NOW",
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushAndRemoveUntil(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => SignUPScreen()),
-                                  (route) => false);
+                                 );
                             },
                           style: TextStyle(
                             color: ColorConstant.orangeA200,

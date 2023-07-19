@@ -4,6 +4,7 @@ class Apis {
   static const login = _baseUrl + '/api/v1/users/login';
   static const  imageUrl = 'https://groomely.com/public/storage/';
   static const sellerUpdateProfile = _baseUrl + '/api/v1/sellers/profile/update';
+  static const sellerUpdatePassword = _baseUrl + '/api/v1/users/profile/change-password';
   static const forgotPasswordApi = _baseUrl + '/api/v1/users/forget-password';
   static const signup = _baseUrl + '/api/v1/users/register';
   static const fetchServiceList = _baseUrl + '/api/v1/sellers/service/list';

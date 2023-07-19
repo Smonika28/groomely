@@ -4,9 +4,10 @@ class SellerSignupModel {
   String? token;
   Data? data;
   String? message;
+  List<String>? error;
 
   SellerSignupModel(
-      {this.status, this.statusCode, this.token, this.data, this.message});
+      {this.status, this.statusCode, this.token, this.data, this.message, this.error});
 
   SellerSignupModel.withError(String errorMsg) {
     message = errorMsg;
@@ -25,6 +26,7 @@ class SellerSignupModel {
     token = json['token'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     message = json['message'];
+    error = json['error'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +38,7 @@ class SellerSignupModel {
       data['data'] = this.data!.toJson();
     }
     data['message'] = this.message;
+    data['error'] = this.error;
     return data;
   }
 }
