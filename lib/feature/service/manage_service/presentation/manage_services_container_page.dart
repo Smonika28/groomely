@@ -36,15 +36,9 @@ class _ManageServicesContainerPageState
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
-        // appBar: PreferredSize(
-        //     preferredSize: const Size.fromHeight(50),
-        //     child: CustomAppBar(scaffoldKey: scaffoldKey)),
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text("Manage Services",
-              style: TextStyle(fontSize: 20, color: Colors.black)),
+        appBar: CustomAppBar(
+          title: 'Manage Services',
+          autoImplyLeading: false,
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -156,52 +150,36 @@ class _ManageServicesContainerPageState
                 } else if (state is ManageServiceDataLoadingState) {
                   return Center(child: CircularProgressIndicator.adaptive());
                 } else if (state is ManageServiceDataLoadedState) {
-                  return Expanded(
+                  return Flexible(
                     child: Padding(
                       padding: getPadding(
                         left: 15,
                         top: 24,
                         right: 15,
                       ),
-                      child: ListView.separated(
-                        // physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (
-                          context,
-                          index,
-                        ) {
-                          return SizedBox(
-                            height: getVerticalSize(
-                              13,
-                            ),
-                          );
-                        },
-                        itemCount: state.serviceModel.data!.length,
-                        itemBuilder: (context, index) {
-                          print("pandey jii---> ${state.serviceModel.data![index].status}");
-                          if(filterKey == 1){
-                            if(state.serviceModel.data![index].status == 1) {
-                              return ListservicenameItemWidget(
-                                serviceData: state.serviceModel.data![index],
-                              );
-
-                            } } else if(filterKey == 0){
-                              if(state.serviceModel.data![index].status == 0) {
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: state.serviceModel.data!.length,
+                          itemBuilder: (context, index) {
+                            if (filterKey == 1) {
+                              if (state.serviceModel.data![index].status == 1) {
                                 return ListservicenameItemWidget(
                                   serviceData: state.serviceModel.data![index],
                                 );
                               }
+                            } else if (filterKey == 0) {
+                              if (state.serviceModel.data![index].status == 0) {
+                                return ListservicenameItemWidget(
+                                  serviceData: state.serviceModel.data![index],
+
+                                );
+                              }
+                            } else {
+                              return ListservicenameItemWidget(
+                                serviceData: state.serviceModel.data![index],
+                              );
                             }
-                            else {
-                            return ListservicenameItemWidget(
-                              serviceData: state.serviceModel.data![index],
-                            );
-                          }
-                          // return ListservicenameItemWidget(
-                          //   serviceData: state.serviceModel.data![index],
-                          // );
-                        }
-                      ),
+                          }),
                     ),
                   );
                 }

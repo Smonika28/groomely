@@ -163,7 +163,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             top: 10,
                           ),
                           child: Text(
-                            "${state.profileModel.data?.details?.name}"
+                              // "${state.profileModel.data?.sellerDetails?.shopName}"
+                              "${state.profileModel.data?.details?.name}"
                                 .toUpperCase(),
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,

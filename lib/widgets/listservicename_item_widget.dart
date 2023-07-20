@@ -31,6 +31,7 @@ class _ListservicenameItemWidgetState extends State<ListservicenameItemWidget> {
       },
       child: Container(
         width: double.maxFinite,
+        padding: EdgeInsets.only(top: 15),
         child: Container(
           decoration: AppDecoration.fillGray200.copyWith(
             borderRadius: BorderRadiusStyle.roundedBorder6,
